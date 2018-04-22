@@ -13,7 +13,7 @@
 #include "graphics.h"
 
 
-int	draw_mandelbrot(const t_vector2f *p, const size_t nb_iteration)
+static int	draw_mandelbrot(const t_vector2f *p, const size_t nb_iteration)
 {
 	size_t		i;
 	t_vector2f	pt;
