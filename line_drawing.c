@@ -14,7 +14,7 @@ static void	octant_one(const t_vector2i *p1, const t_vector2i *p2,
 	dx = e * 2;
 	while (p1_cpy->x <= p2->x)
 	{
-		put_pixel(pixels, p1_cpy, color);
+		put_pixel(pixels, p1_cpy->x, p1_cpy->y, color);
 		p1_cpy->x++;
 		if ((e = e - dy) < 0)
 		{
@@ -39,7 +39,7 @@ static void	octant_two(const t_vector2i *p1, const t_vector2i *p2,
 	dy = e * 2;
 	while (p1_cpy->y <= p2->y)
 	{
-		put_pixel(pixels, p1_cpy, color);
+		put_pixel(pixels, p1_cpy->x, p1_cpy->y, color);
 		p1_cpy->y++;
 		if ((e = e - dx) < 0)
 		{
@@ -64,7 +64,7 @@ static void	octant_seven(const t_vector2i *p1, const t_vector2i *p2,
 	dy = e * 2;
 	while (p1_cpy->y >= p2->y)
 	{
-		put_pixel(pixels, p1_cpy, color);
+		put_pixel(pixels, p1_cpy->x, p1_cpy->y, color);
 		p1_cpy->y--;
 		if ((e = e + dx) > 0)
 		{
@@ -89,7 +89,7 @@ static void	octant_eight(const t_vector2i *p1, const t_vector2i *p2,
 	dx = e * 2;
 	while (p1_cpy->x <= p2->x)
 	{
-		put_pixel(pixels, p1_cpy, color);
+		put_pixel(pixels, p1_cpy->x, p1_cpy->y, color);
 		p1_cpy->x++;
 		if ((e = e + dy) < 0)
 		{

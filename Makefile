@@ -17,6 +17,7 @@ INCLUDES = .
 SRCS =	main.c events.c update.c \
 		render.c line_drawing.c colors.c	\
 		maths_help.c vector2i.c vector2f.c	\
+		frac_mandelbrot.c clamp.c \
 		sdl_allocator.c app_allocator.c
 OBJS = $(SRCS:.c=.o)
 

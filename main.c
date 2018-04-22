@@ -6,7 +6,7 @@
 static void			loop(t_app *app)
 {
 	handle_event(app);
-	calculate_frame(app);
+	//calculate_frame(app); // fractal dont need refresh
 	sdl_draw(app->sdl, app->pixels);
 }
 
@@ -18,6 +18,7 @@ int					main()
 	t_app		*app;
 
 	app = new_app();
+	apply_fnc_to_each_pixel(app->pixels, &draw_frac);
 	while (app->loop)
 		loop(app);
 	app_del(app);

@@ -32,10 +32,9 @@ int		sdl_draw(t_sdl *sdl, t_uint32 *pixels)
 /*
 ** changes the color of a pixel in a frame (*pixels)
 */
-void	put_pixel(t_uint32 *pixels, const t_vector2i *point, const t_color *color)
+void	put_pixel(t_uint32 *pixels, t_uint32 x, t_uint32 y, const t_color *color)
 {
-	if (point->x < 0 || point->x > WIN_WIDTH ||
-			point->y < 0 || point->y > WIN_HEIGHT)
+	if (x > WIN_WIDTH || y > WIN_HEIGHT)
 		return ;
-	pixels[point->y * WIN_WIDTH + point->x] = color_to_pixeldata(color);
+	pixels[y * WIN_WIDTH + x] = color_to_pixeldata(color);
 }

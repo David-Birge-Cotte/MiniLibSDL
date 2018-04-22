@@ -53,6 +53,19 @@ t_color			*copy_color(const t_color *color_cpy)
 	return (color);
 }
 
+t_color			*add_to_color(t_color *original, const t_color *color_to_add)
+{
+	original->r = clampi(original->r,  color_to_add->r,
+						 original->r + color_to_add->r);
+	original->g = clampi(original->g,  color_to_add->g,
+						 original->g + color_to_add->g);
+	original->b = clampi(original->b,  color_to_add->b,
+						 original->b + color_to_add->b);
+	original->a = clampi(original->a,  color_to_add->a,
+						 original->a + color_to_add->a);
+	return (original);
+}
+
 /*
 ** Creates a new color, based on a linear interpolation between two colors
 ** with t == 0 : returns copy of start
