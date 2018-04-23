@@ -12,13 +12,20 @@
 
 #include "graphics.h"
 
+/*
+** Clamps a value between a min and max
+** float clampf, int clampi
+*/
+
 float	clampf(float min, float max, float val)
 {
 	float ret;
 
 	ret = val;
-	if (val > max) ret = max;
-	else if (val < min) ret = min;
+	if (val > max)
+		ret = max;
+	else if (val < min)
+		ret = min;
 	return (ret);
 }
 
@@ -27,7 +34,9 @@ int		clampi(int min, int max, int val)
 	int ret;
 
 	ret = val;
-	if (val > max) ret = max;
-	else if (val < min) ret = min;
+	if (val > max)
+		ret = max;
+	else if (val < min)
+		ret = min;
 	return (ret);
 }

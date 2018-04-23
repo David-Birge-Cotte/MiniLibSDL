@@ -124,7 +124,6 @@ void		draw_line(t_uint32 *pixels, const t_vector2i *p1,
 		tmp = new_vector2i(p2->x, p2->y);
 		p2 = p1;
 		p1 = tmp;
-		ft_memdel((void**)&tmp);
 	}
 	dx = p2->x - p1->x;
 	if ((dy = p2->y - p1->y) > 0)

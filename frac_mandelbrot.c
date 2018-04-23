@@ -12,7 +12,6 @@
 
 #include "graphics.h"
 
-
 static int	draw_mandelbrot(const t_vector2f *p, const size_t nb_iteration)
 {
 	size_t		i;
@@ -39,14 +38,14 @@ static int	draw_mandelbrot(const t_vector2f *p, const size_t nb_iteration)
 	return (i);
 }
 
-t_color	*draw_frac(t_uint32 x, t_uint32 y)
+t_color		*draw_frac(t_uint32 x, t_uint32 y)
 {
 	t_vector2f	pt;
 	t_color		*color;
 	int			val;
 
 	pt = vector2f(map((float)x, vector2f(0, WIN_WIDTH), vector2f(-2.3f, 1.3f)),
-							map((float)y, vector2f(0, WIN_HEIGHT), vector2f(-1.8f, 1.8f)));
+				map((float)y, vector2f(0, WIN_HEIGHT), vector2f(-1.8f, 1.8f)));
 	val = draw_mandelbrot(&pt, 64);
 	val = map(val, vector2f(0, 64), vector2f(0, 255));
 	color = new_color(val, val, val, 255);

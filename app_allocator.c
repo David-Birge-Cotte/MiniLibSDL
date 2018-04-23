@@ -15,13 +15,18 @@
 /*
 ** Starts a new app with an new sdl instance
 */
-t_app	*new_app(void)
+
+t_app		*new_app(void)
 {
 	t_app	*app;
 
-	app = ft_memalloc(sizeof(t_app));
-	app->pixels = ft_memalloc(sizeof(t_uint32) * WIN_HEIGHT * WIN_WIDTH);
-	app->sdl = new_sdl();
+	if ((app = ft_memalloc(sizeof(t_app))) == NULL)
+		return (NULL);
+	app->nb_pixels = WIN_HEIGHT * WIN_WIDTH;
+	if ((app->pixels = ft_memalloc(sizeof(t_uint32) * app->nb_pixels)) == NULL)
+		return (NULL);
+	if ((app->sdl = new_sdl()) == NULL)
+		return (NULL);
 	app->loop = TRUE;
 	return (app);
 }
@@ -29,6 +34,7 @@ t_app	*new_app(void)
 /*
 ** Stops the app and the sdl instance then properly exit the program
 */
+
 void		app_del(t_app *app)
 {
 	sdl_del(app->sdl);

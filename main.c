@@ -15,6 +15,7 @@
 /*
 ** This is the main loop
 */
+
 static void			loop(t_app *app)
 {
 	handle_event(app);
@@ -25,11 +26,13 @@ static void			loop(t_app *app)
 /*
 ** The entry point of the program
 */
-int					main()
+
+int					main(void)
 {
 	t_app		*app;
 
-	app = new_app();
+	if ((app = new_app()) == NULL)
+		return (-1);
 	apply_fnc_to_each_pixel(app->pixels, &draw_frac);
 	while (app->loop)
 		loop(app);

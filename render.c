@@ -15,17 +15,16 @@
 /*
 ** Sets all the pixels of the frame to transparent
 */
-void	clear_frame(t_uint32 *frame)
-{
-	int	size;
 
-	size = WIN_WIDTH * WIN_HEIGHT * sizeof(t_uint32);
-	ft_memset((void*)frame, 0, size);
+void	clear_frame(t_uint32 *frame, size_t nb_pixels)
+{
+	ft_memset((void*)frame, 0, (size_t)(nb_pixels * sizeof(t_uint32)));
 }
 
 /*
 ** Draws the frame (*pixels) to the SDL
 */
+
 int		sdl_draw(t_sdl *sdl, t_uint32 *pixels)
 {
 	size_t	win_size;
@@ -44,7 +43,9 @@ int		sdl_draw(t_sdl *sdl, t_uint32 *pixels)
 /*
 ** changes the color of a pixel in a frame (*pixels)
 */
-void	put_pixel(t_uint32 *pixels, t_uint32 x, t_uint32 y, const t_color *color)
+
+void	put_pixel(t_uint32 *pixels, t_uint32 x, t_uint32 y,
+					const t_color *color)
 {
 	if (x > WIN_WIDTH || y > WIN_HEIGHT)
 		return ;
