@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sdl_allocator.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dbirge-c <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/04/23 15:23:48 by dbirge-c          #+#    #+#             */
+/*   Updated: 2018/04/23 15:23:50 by dbirge-c         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "graphics.h"
 
 /*
@@ -11,7 +23,7 @@ t_sdl	*new_sdl(void)
 	SDL_Init(SDL_INIT_VIDEO);
 	sdl->event = ft_memalloc(sizeof(SDL_Event));
 	sdl->win = SDL_CreateWindow(WIN_TITLE, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-			WIN_WIDTH, WIN_HEIGHT, 0);
+			WIN_WIDTH, WIN_HEIGHT, SDL_WINDOW_OPENGL);
 	sdl->renderer = SDL_CreateRenderer(sdl->win, -1, 0);
 	SDL_SetRenderDrawColor(sdl->renderer, 0, 0, 0, 255);
 	sdl->frame = SDL_CreateTexture(sdl->renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_STREAMING,

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   graphics.h                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dbirge-c <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/04/23 15:27:21 by dbirge-c          #+#    #+#             */
+/*   Updated: 2018/04/23 15:27:23 by dbirge-c         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef GRAPHICS_H
 # define GRAPHICS_H
 
@@ -15,8 +27,8 @@
 /*
 ** Window settings
 */
-# define WIN_WIDTH (512)
-# define WIN_HEIGHT (512)
+# define WIN_WIDTH (1024)
+# define WIN_HEIGHT (1024)
 # define WIN_TITLE "Window Title"
 
 /*
@@ -131,15 +143,6 @@ t_color			*copy_color(const t_color *color_cpy);
 t_color			*lerp_color(const t_color *start, const t_color *end, float t);
 
 /*
-** App & SDL
-*/
-t_app			*new_app(void);
-void			app_del(t_app *app);
-t_sdl			*new_sdl(void);
-void			sdl_del(t_sdl *sdl);
-void			quit_app(void);
-
-/*
 ** Events
 */
 void			handle_event(t_app *app);
@@ -155,6 +158,15 @@ int				sdl_draw(t_sdl *sdl, t_uint32 *pixels);
 void			put_pixel(t_uint32 *pixels, t_uint32 x, t_uint32 y, const t_color *color);
 void			draw_line(t_uint32 *pixels, const t_vector2i *p1,
 						const t_vector2i *p2, const t_color *color);
+
+/*
+** App & SDL
+*/
+t_app			*new_app(void);
+void			app_del(t_app *app);
+t_sdl			*new_sdl(void);
+void			sdl_del(t_sdl *sdl);
+void			quit_app(void);
 
 /*
 ** Fractal (use for test with apply_fnc_to_each_pixel())
