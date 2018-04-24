@@ -19,11 +19,27 @@
 
 void	calculate_frame(t_app *app)
 {
+	static int	i = 0;
+	t_color		*white;
+	t_vector2i	*left;
+	t_vector2i	*right;
+
 	clear_frame(app->pixels, app->nb_pixels);
-	//draw_line(app->pixels, new_vector2i(0, 0),
-	//			new_vector2i(WIN_WIDTH, WIN_HEIGHT), new_color(WHITE));
-	//draw_line(app->pixels, new_vector2i(0, WIN_HEIGHT),
-	//			new_vector2i(WIN_WIDTH, 0), new_color(WHITE));
+
+	if (i < WIN_WIDTH)
+		i++;
+	else
+		i = 0;
+
+	white = new_color(WHITE);
+	left = new_vector2i(i, i);
+	right = new_vector2i(WIN_WIDTH - i, WIN_HEIGHT - i);
+
+	draw_line(app->pixels, left,right, white);
+
+	ft_memdel((void**)&white);
+	ft_memdel((void**)&left);
+	ft_memdel((void**)&right);
 }
 
 /*

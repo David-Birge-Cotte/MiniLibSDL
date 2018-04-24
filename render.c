@@ -13,19 +13,35 @@
 #include "graphics.h"
 
 /*
-** Sets all the pixels of the frame to transparent
+** Sets all the pixels of the frame to a color
 */
 
-void	clear_frame(t_uint32 *frame, size_t nb_pixels)
+void	fill_frame (t_uint32 *pixels, size_t nb_pixels, t_color *color)
 {
-	ft_memset((void*)frame, 0, (size_t)(nb_pixels * sizeof(t_uint32)));
+	t_uint32	pixel_color;
+	
+	pixel_color = color_to_pixeldata(color);
+	ft_memset((void*)pixels, pixel_color, (size_t)(nb_pixels * sizeof(t_uint32)));
+}
+
+/*
+** Sets all the pixels of the frame to a 0 (transparent)
+*/
+
+void	clear_frame(t_uint32 *pixels, size_t nb_pixels)
+{
+	t_color	*transparent;
+
+	transparent = new_color(TRANSP);
+	fill_frame(pixels, nb_pixels, transparent);
+	ft_memdel((void**)&transparent);
 }
 
 /*
 ** Draws the frame (*pixels) to the SDL
 */
 
-int		sdl_draw(t_sdl *sdl, t_uint32 *pixels)
+int		display(t_sdl *sdl, t_uint32 *pixels)
 {
 	size_t	win_size;
 
@@ -47,7 +63,7 @@ int		sdl_draw(t_sdl *sdl, t_uint32 *pixels)
 void	put_pixel(t_uint32 *pixels, t_uint32 x, t_uint32 y,
 					const t_color *color)
 {
-	if (x > WIN_WIDTH || y > WIN_HEIGHT)
+	if (x >= WIN_WIDTH || y >= WIN_HEIGHT)
 		return ;
 	pixels[y * WIN_WIDTH + x] = color_to_pixeldata(color);
 }

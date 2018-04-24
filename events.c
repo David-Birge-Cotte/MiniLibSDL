@@ -24,7 +24,7 @@ static void	keydown(t_app *app, int keycode)
 
 void		handle_event(t_app *app)
 {
-	SDL_WaitEvent(app->sdl->event);
+	SDL_PollEvent(app->sdl->event);
 	if (app->sdl->event->type == SDL_QUIT)
 		app->loop = FALSE;
 	else if (app->sdl->event->type == SDL_KEYDOWN)

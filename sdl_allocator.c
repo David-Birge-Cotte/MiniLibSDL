@@ -28,11 +28,11 @@ t_sdl	*new_sdl(void)
 		return (NULL);
 	if ((sdl->win = SDL_CreateWindow(WIN_TITLE, SDL_WINDOWPOS_CENTERED,
 			SDL_WINDOWPOS_CENTERED, WIN_WIDTH, WIN_HEIGHT,
-			SDL_WINDOW_OPENGL)) == NULL)
+			SDL_WINDOW_BORDERLESS)) == NULL)
 		return (NULL);
 	if ((sdl->renderer = SDL_CreateRenderer(sdl->win, -1, 0)) == NULL)
 		return (NULL);
-	if (SDL_SetRenderDrawColor(sdl->renderer, 0, 0, 0, 255) == -1)
+	if (SDL_SetRenderDrawColor(sdl->renderer, TRANSP) == -1)
 		return (NULL);
 	if ((sdl->frame = SDL_CreateTexture(sdl->renderer, SDL_PIXELFORMAT_RGBA8888,
 			SDL_TEXTUREACCESS_STREAMING, WIN_WIDTH, WIN_HEIGHT)) == NULL)

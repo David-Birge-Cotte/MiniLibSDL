@@ -154,8 +154,9 @@ void			handle_event(t_app *app);
 */
 void			calculate_frame(t_app *app);
 void			apply_fnc_to_each_pixel(t_uint32 *pixels, t_color *(*fnc_ptr)(t_uint32, t_uint32));
-void			clear_frame(t_uint32 *frame, size_t nb_pixels);
-int				sdl_draw(t_sdl *sdl, t_uint32 *pixels);
+void			clear_frame(t_uint32 *pixels, size_t nb_pixels);
+void			fill_frame (t_uint32 *pixels, size_t nb_pixels, t_color *color);
+int				display(t_sdl *sdl, t_uint32 *pixels);
 void			put_pixel(t_uint32 *pixels, t_uint32 x, t_uint32 y, const t_color *color);
 void			draw_line(t_uint32 *pixels, const t_vector2i *p1,
 						const t_vector2i *p2, const t_color *color);
