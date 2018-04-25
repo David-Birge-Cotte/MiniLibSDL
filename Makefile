@@ -25,7 +25,9 @@ SRCS =	main.c \
 		ft_math/maths_help.c \
 		ft_math/interpolations.c \
 		ft_math/vector2i.c \
+		ft_math/vector2i_1.c \
 		ft_math/vector2f.c \
+		ft_math/vector2f_1.c \
 		ft_math/clamp.c
 OBJS = $(addprefix $(OBJ_DIR), $(SRCS:.c=.o))
 NAME = sdl_simple

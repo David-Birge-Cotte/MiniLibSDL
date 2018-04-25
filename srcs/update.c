@@ -35,7 +35,7 @@ void	calculate_frame(t_app *app)
 	left = v2i(i, i);
 	right = v2i(WIN_WIDTH - i, WIN_HEIGHT - i);
 
-	draw_line(app->pixels, &left, &right, white);
+	draw_line(app->pixels, left, right, white);
 	ft_memdel((void**)&white);
 }
 

@@ -116,8 +116,7 @@ void			clear_frame(t_uint32 *pixels, size_t nb_pixels);
 void			fill_frame (t_uint32 *pixels, size_t nb_pixels, t_color *color);
 int				display(t_sdl *sdl, t_uint32 *pixels);
 void			put_pixel(t_uint32 *pixels, t_uint32 x, t_uint32 y, const t_color *color);
-void			draw_line(t_uint32 *pixels, const t_vector2i *p1,
-						const t_vector2i *p2, const t_color *color);
+void			draw_line(t_uint32 *pixels, t_vector2i p1, t_vector2i p2, const t_color *color);
 t_color			*draw_frac(t_uint32 x, t_uint32 y);
 
 /*

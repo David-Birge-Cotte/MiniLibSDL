@@ -12,16 +12,6 @@
 
 #include "../../includes/ft_math.h"
 
-t_vector2i	*new_vector2i(int x, int y)
-{
-	t_vector2i	*vec2i;
-
-	vec2i = ft_memalloc(sizeof(t_vector2i));
-	vec2i->x = x;
-	vec2i->y = y;
-	return (vec2i);
-}
-
 t_vector2i	v2i(int x, int y)
 {
 	t_vector2i	vec2i;
@@ -33,21 +23,23 @@ t_vector2i	v2i(int x, int y)
 
 t_vector2i	v2i_add(t_vector2f v1, t_vector2f v2)
 {
-	t_vector2i	vec2i;
-
-	vec2i = v2i(v1.x + v2.x, v1.y + v2.y);
-	return (vec2i);
+	return (v2i(v1.x + v2.x, v1.y + v2.y));
 }
 
 t_vector2i	v2i_sub(t_vector2f v1, t_vector2f v2)
 {
-	t_vector2i	vec2i;
-
-	vec2i = v2i(v1.x - v2.x, v1.y - v2.y);
-	return (vec2i);
+	return (v2i(v1.x - v2.x, v1.y - v2.y));
 }
 
-float		v2i_magnitude(t_vector2i vec2i)
+t_vector2i	v2i_unit(t_vector2i vec2i)
 {
-	return (sqrt(vec2i.x * vec2i.x + vec2i.y * vec2i.y));
+	float 		mag;
+
+	mag = v2i_magnitude(vec2i);
+	return (v2i(vec2i.x / mag, vec2i.y / mag));
+}
+
+t_vector2i	v2i_scale(t_vector2i v, float factor)
+{
+	return (v2i(v.x * factor, v.y * factor));
 }
