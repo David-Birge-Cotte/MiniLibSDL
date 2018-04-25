@@ -14,6 +14,8 @@
 # include <stdlib.h>
 # include <math.h>
 
+# define PI 3.14159265358979323846
+
 typedef struct		s_vector2i
 {
 	int				x;
@@ -31,7 +33,7 @@ t_vector2i		v2i_add(t_vector2f v1, t_vector2f v2);
 t_vector2i		v2i_sub(t_vector2f v1, t_vector2f v2);
 t_vector2i		v2i_unit(t_vector2i vec2i);
 t_vector2i		v2i_scale(t_vector2i v, float factor);
-float			v2i_magnitude(t_vector2i v);
+float			v2i_mag(t_vector2i v);
 float			v2i_dot(t_vector2i v1, t_vector2i v2);
 float			v2i_angle(t_vector2i v1, t_vector2i v2);
 
@@ -40,7 +42,7 @@ t_vector2f		v2f_add(t_vector2f v1, t_vector2f v2);
 t_vector2f		v2f_sub(t_vector2f v1, t_vector2f v2);
 t_vector2f		v2f_unit(t_vector2f vec2f);
 t_vector2f		v2f_scale(t_vector2f v, float factor);
-float			v2f_magnitude(t_vector2f v);
+float			v2f_mag(t_vector2f v);
 float			v2f_dot(t_vector2f v1, t_vector2f v2);
 float			v2f_angle(t_vector2f v1, t_vector2f v2);
 

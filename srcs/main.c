@@ -24,6 +24,15 @@ static void			loop(t_app *app)
 }
 
 /*
+** Function called once before the loop starts
+*/
+
+static void			start()
+{
+
+}
+
+/*
 ** The entry point of the program
 */
 
@@ -33,6 +42,7 @@ int					main(void)
 
 	if ((app = new_app()) == NULL)
 		return (-1);
+	start();
 	while (app->loop)
 		loop(app);
 	app_del(app);

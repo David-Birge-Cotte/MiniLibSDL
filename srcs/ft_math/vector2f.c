@@ -35,7 +35,7 @@ t_vector2f	v2f_unit(t_vector2f vec2f)
 {
 	float 		mag;
 
-	mag = v2f_magnitude(vec2f);
+	mag = v2f_mag(vec2f);
 	return (v2f(vec2f.x / mag, vec2f.y / mag));
 }
 

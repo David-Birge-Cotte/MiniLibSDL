@@ -19,11 +19,10 @@ float		v2i_dot(t_vector2i v1, t_vector2i v2)
 
 float		v2i_angle(t_vector2i v1, t_vector2i v2)
 {
-	return (acosf(v2i_dot(v1, v2)) /
-			(v2i_magnitude(v1) * v2i_magnitude(v2)));
+	return (acosf(v2i_dot(v1, v2) / (v2i_mag(v1) * v2i_mag(v2))) * 180.0 / PI);
 }
 
-float		v2i_magnitude(t_vector2i vec2i)
+float		v2i_mag(t_vector2i vec2i)
 {
 	return (sqrtf(vec2i.x * vec2i.x + vec2i.y * vec2i.y));
 }

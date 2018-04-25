@@ -19,11 +19,10 @@ float	v2f_dot(t_vector2f v1, t_vector2f v2)
 
 float	v2f_angle(t_vector2f v1, t_vector2f v2)
 {
-	return (acosf(v2f_dot(v1, v2)) /
-			(v2f_magnitude(v1) * v2f_magnitude(v2)));
+	return (acosf(v2f_dot(v1, v2) / (v2f_mag(v1) * v2f_mag(v2))) * 180.0 / PI);
 }
 
-float	v2f_magnitude(t_vector2f vec2f)
+float	v2f_mag(t_vector2f vec2f)
 {
 	return (sqrtf(vec2f.x * vec2f.x + vec2f.y * vec2f.y));
 }
