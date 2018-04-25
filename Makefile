@@ -20,13 +20,13 @@ SRCS =	main.c \
 		render.c \
 		line_drawing.c \
 		colors.c \
-		maths_help.c \
-		vector2i.c \
-		vector2f.c \
-		frac_mandelbrot.c \
-		clamp.c \
 		sdl_allocator.c \
-		app_allocator.c
+		app_allocator.c \
+		ft_math/maths_help.c \
+		ft_math/interpolations.c \
+		ft_math/vector2i.c \
+		ft_math/vector2f.c \
+		ft_math/clamp.c
 OBJS = $(addprefix $(OBJ_DIR), $(SRCS:.c=.o))
 NAME = sdl_simple
 CC = gcc

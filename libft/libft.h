@@ -18,6 +18,13 @@
 # include <string.h>
 # include "get_next_line.h"
 
+/*
+** Typedef for common unsigned types
+*/
+typedef unsigned int	t_uint32;
+typedef unsigned short	t_uint16;
+typedef unsigned char	t_uint8;
+
 typedef struct		s_list
 {
 	void			*content;

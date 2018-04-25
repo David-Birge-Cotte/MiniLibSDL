@@ -18,6 +18,7 @@
 */
 # include <SDL2/SDL.h>
 # include "../libft/libft.h"
+# include "ft_math.h"
 
 /*
 ** optionnal libraries
@@ -42,12 +43,6 @@
 # define TRANSP	0	, 0		, 0		, 0
 
 /*
-** Typedef for common unsigned types
-*/
-typedef unsigned int	t_uint32;
-typedef unsigned char	t_uint8;
-
-/*
 ** Boolean type 0 = FALSE, 1 = TRUE
 */
 typedef enum		e_bool
@@ -55,31 +50,6 @@ typedef enum		e_bool
 	FALSE,
 	TRUE
 }					t_bool;
-
-/*
-** Todo, not implemented yet
-*/
-typedef struct		s_perlin
-{
-	unsigned int	seed;
-	float			freq;
-	float			depth;
-}					t_perlin;
-
-/*
-** Vectors2 in int (i) and float (f)
-*/
-typedef struct		s_vector2i
-{
-	int				x;
-	int				y;
-}					t_vector2i;
-
-typedef struct		s_vector2f
-{
-	float			x;
-	float			y;
-}					t_vector2f;
 
 /*
 ** 32 bit color structure RGBA8888
@@ -124,18 +94,6 @@ typedef struct		s_app
 }					t_app;
 
 /*
-** Math
-*/
-t_vector2i		*new_vector2i(int x, int y);
-t_vector2i		vector2i(int x, int y);
-t_vector2f		*new_vector2f(float x, float y);
-t_vector2f		vector2f(float x, float y);
-float			lerp(const float start, const float end, const float t);
-float			map(float input, t_vector2f input_range, t_vector2f output_range);
-int				clampi(int min, int max, int val);
-float			clampf(float min, float max, float val);
-
-/*
 ** Colors
 */
 t_uint32		color_to_pixeldata(const t_color *color);
@@ -160,6 +118,7 @@ int				display(t_sdl *sdl, t_uint32 *pixels);
 void			put_pixel(t_uint32 *pixels, t_uint32 x, t_uint32 y, const t_color *color);
 void			draw_line(t_uint32 *pixels, const t_vector2i *p1,
 						const t_vector2i *p2, const t_color *color);
+t_color			*draw_frac(t_uint32 x, t_uint32 y);
 
 /*
 ** App & SDL
