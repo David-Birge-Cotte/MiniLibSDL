@@ -17,7 +17,7 @@
 ** Required libraries
 */
 # include <SDL2/SDL.h>
-# include "libft/libft.h"
+# include "../libft/libft.h"
 
 /*
 ** optionnal libraries

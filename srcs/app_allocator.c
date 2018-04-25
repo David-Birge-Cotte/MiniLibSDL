@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "graphics.h"
+#include "../includes/graphics.h"
 
 /*
 ** Starts a new app with an new sdl instance

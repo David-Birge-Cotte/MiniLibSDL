@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "graphics.h"
+#include "../includes/graphics.h"
 
 /*
 ** Linear interpolation of a value between start and end at t >= 0 && t <= 1

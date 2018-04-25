@@ -1,32 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector2f.c                                         :+:      :+:    :+:   */
+/*   clamp.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbirge-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/23 15:23:55 by dbirge-c          #+#    #+#             */
-/*   Updated: 2018/04/23 15:23:57 by dbirge-c         ###   ########.fr       */
+/*   Created: 2018/04/23 15:23:11 by dbirge-c          #+#    #+#             */
+/*   Updated: 2018/04/23 15:23:13 by dbirge-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "graphics.h"
+#include "../includes/graphics.h"
 
-t_vector2f	*new_vector2f(float x, float y)
+/*
+** Clamps a value between a min and max
+** float clampf, int clampi
+*/
+
+float	clampf(float min, float max, float val)
 {
-	t_vector2f	*vector2i;
+	float ret;
 
-	vector2i = ft_memalloc(sizeof(t_vector2f));
-	vector2i->x = x;
-	vector2i->y = y;
-	return (vector2i);
+	ret = val;
+	if (val > max)
+		ret = max;
+	else if (val < min)
+		ret = min;
+	return (ret);
 }
 
-t_vector2f	vector2f(float x, float y)
+int		clampi(int min, int max, int val)
 {
-	t_vector2f	vector2i;
+	int ret;
 
-	vector2i.x = x;
-	vector2i.y = y;
-	return (vector2i);
+	ret = val;
+	if (val > max)
+		ret = max;
+	else if (val < min)
+		ret = min;
+	return (ret);
 }

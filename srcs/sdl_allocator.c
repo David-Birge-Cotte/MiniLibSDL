@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "graphics.h"
+#include "../includes/graphics.h"
 
 /*
 ** Creates a new sdl instance

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "graphics.h"
+#include "../includes/graphics.h"
 
 /*
 ** Use this function to calculate the next frame

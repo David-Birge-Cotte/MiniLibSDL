@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "graphics.h"
+#include "../includes/graphics.h"
 
 static void	octant_one(const t_vector2i *p1, const t_vector2i *p2,
 						t_uint32 *pixels, const t_color *color)

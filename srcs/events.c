@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector2i.c                                         :+:      :+:    :+:   */
+/*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbirge-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/23 15:23:59 by dbirge-c          #+#    #+#             */
-/*   Updated: 2018/04/23 15:24:04 by dbirge-c         ###   ########.fr       */
+/*   Created: 2018/04/23 15:23:28 by dbirge-c          #+#    #+#             */
+/*   Updated: 2018/04/23 15:23:30 by dbirge-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "graphics.h"
+#include "../includes/graphics.h"
 
-t_vector2i	*new_vector2i(int x, int y)
+static void	keydown(t_app *app, int keycode)
 {
-	t_vector2i	*vector2i;
-
-	vector2i = ft_memalloc(sizeof(t_vector2i));
-	vector2i->x = x;
-	vector2i->y = y;
-	return (vector2i);
+	if (keycode == SDLK_ESCAPE)
+		app->loop = FALSE;
 }
 
-t_vector2i	vector2i(int x, int y)
-{
-	t_vector2i	vector2i;
+/*
+** Listens to event and responds to them
+*/
 
-	vector2i.x = x;
-	vector2i.y = y;
-	return (vector2i);
+void		handle_event(t_app *app)
+{
+	SDL_PollEvent(app->sdl->event);
+	if (app->sdl->event->type == SDL_QUIT)
+		app->loop = FALSE;
+	else if (app->sdl->event->type == SDL_KEYDOWN)
+		keydown(app, app->sdl->event->key.keysym.sym);
 }

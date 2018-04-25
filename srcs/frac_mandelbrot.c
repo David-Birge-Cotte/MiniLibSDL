@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "graphics.h"
+#include "../includes/graphics.h"
 
 static int	draw_mandelbrot(const t_vector2f *p, const size_t nb_iteration)
 {

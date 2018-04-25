@@ -35,17 +35,17 @@ OBJ_FILES = $(SRC_FILES:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ_FILES)
-	ar rc $@ $^
-	ranlib $(NAME)
+	@ar rc $@ $^
+	@ranlib $(NAME)
 
 %.o: %.c
-	 gcc -c -o $@ $<
+	 @gcc -c -o $@ $<
 
 clean:
-	rm -f $(OBJ_FILES)
+	@rm -f $(OBJ_FILES)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
 
