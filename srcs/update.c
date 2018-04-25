@@ -21,8 +21,8 @@ void	calculate_frame(t_app *app)
 {
 	static int	i = 0;
 	t_color		*white;
-	t_vector2i	*left;
-	t_vector2i	*right;
+	t_vector2i	left;
+	t_vector2i	right;
 
 	clear_frame(app->pixels, app->nb_pixels);
 
@@ -32,14 +32,11 @@ void	calculate_frame(t_app *app)
 		i = 0;
 
 	white = new_color(WHITE);
-	left = new_vector2i(i, i);
-	right = new_vector2i(WIN_WIDTH - i, WIN_HEIGHT - i);
+	left = v2i(i, i);
+	right = v2i(WIN_WIDTH - i, WIN_HEIGHT - i);
 
-	draw_line(app->pixels, left,right, white);
-
+	draw_line(app->pixels, &left, &right, white);
 	ft_memdel((void**)&white);
-	ft_memdel((void**)&left);
-	ft_memdel((void**)&right);
 }
 
 /*

@@ -44,10 +44,10 @@ t_color		*draw_frac(t_uint32 x, t_uint32 y)
 	t_color		*color;
 	int			val;
 
-	pt = vector2f(map((float)x, vector2f(0, WIN_WIDTH), vector2f(-2.3f, 1.3f)),
-				map((float)y, vector2f(0, WIN_HEIGHT), vector2f(-1.8f, 1.8f)));
+	pt = v2f(map((float)x, v2f(0, WIN_WIDTH), v2f(-2.3f, 1.3f)),
+				map((float)y, v2f(0, WIN_HEIGHT), v2f(-1.8f, 1.8f)));
 	val = draw_mandelbrot(&pt, 64);
-	val = map(val, vector2f(0, 64), vector2f(0, 255));
+	val = map(val, v2f(0, 64), v2f(0, 255));
 	color = new_color(val, val, val, 255);
 	return (color);
 }

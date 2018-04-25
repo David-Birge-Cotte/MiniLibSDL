@@ -12,21 +12,32 @@
 
 #include "../../includes/ft_math.h"
 
-t_vector2f	*new_vector2f(float x, float y)
+t_vector2f	v2f(float x, float y)
 {
-	t_vector2f	*vector2i;
+	t_vector2f	vec2f;
 
-	vector2i = ft_memalloc(sizeof(t_vector2f));
-	vector2i->x = x;
-	vector2i->y = y;
-	return (vector2i);
+	vec2f.x = x;
+	vec2f.y = y;
+	return (vec2f);
 }
 
-t_vector2f	vector2f(float x, float y)
+t_vector2f	v2f_add(t_vector2f v1, t_vector2f v2)
 {
-	t_vector2f	vector2i;
+	t_vector2f	vec2f;
 
-	vector2i.x = x;
-	vector2i.y = y;
-	return (vector2i);
+	vec2f = v2f(v1.x + v2.x, v1.y + v2.y);
+	return (vec2f);
+}
+
+t_vector2f	v2f_sub(t_vector2f v1, t_vector2f v2)
+{
+	t_vector2f	vec2f;
+
+	vec2f = v2f(v1.x - v2.x, v1.y - v2.y);
+	return (vec2f);
+}
+
+float		v2f_magnitude(t_vector2f vec2f)
+{
+	return (sqrtf(vec2f.x * vec2f.x + vec2f.y * vec2f.y));
 }

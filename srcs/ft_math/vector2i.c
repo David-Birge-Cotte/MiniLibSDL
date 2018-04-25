@@ -14,19 +14,40 @@
 
 t_vector2i	*new_vector2i(int x, int y)
 {
-	t_vector2i	*vector2i;
+	t_vector2i	*vec2i;
 
-	vector2i = ft_memalloc(sizeof(t_vector2i));
-	vector2i->x = x;
-	vector2i->y = y;
-	return (vector2i);
+	vec2i = ft_memalloc(sizeof(t_vector2i));
+	vec2i->x = x;
+	vec2i->y = y;
+	return (vec2i);
 }
 
-t_vector2i	vector2i(int x, int y)
+t_vector2i	v2i(int x, int y)
 {
-	t_vector2i	vector2i;
+	t_vector2i	vec2i;
 
-	vector2i.x = x;
-	vector2i.y = y;
-	return (vector2i);
+	vec2i.x = x;
+	vec2i.y = y;
+	return (vec2i);
+}
+
+t_vector2i	v2i_add(t_vector2f v1, t_vector2f v2)
+{
+	t_vector2i	vec2i;
+
+	vec2i = v2i(v1.x + v2.x, v1.y + v2.y);
+	return (vec2i);
+}
+
+t_vector2i	v2i_sub(t_vector2f v1, t_vector2f v2)
+{
+	t_vector2i	vec2i;
+
+	vec2i = v2i(v1.x - v2.x, v1.y - v2.y);
+	return (vec2i);
+}
+
+float		v2i_magnitude(t_vector2i vec2i)
+{
+	return (sqrt(vec2i.x * vec2i.x + vec2i.y * vec2i.y));
 }
