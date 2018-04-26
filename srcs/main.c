@@ -19,7 +19,7 @@
 static void			loop(t_app *app)
 {
 	handle_event(app);
-	calculate_frame(app);
+	//calculate_frame(app);
 	display(app->sdl, app->pixels);
 }
 
@@ -27,9 +27,10 @@ static void			loop(t_app *app)
 ** Function called once before the loop starts
 */
 
-static void			start()
+static void			start(t_app *app)
 {
-
+	t_mesh	box = create_box(500, 500, 0);
+	draw_mesh(app->pixels, box);
 }
 
 /*
@@ -42,7 +43,7 @@ int					main(void)
 
 	if ((app = new_app()) == NULL)
 		return (-1);
-	start();
+	start(app);
 	while (app->loop)
 		loop(app);
 	app_del(app);

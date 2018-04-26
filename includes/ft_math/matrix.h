@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector2i_1.c                                       :+:      :+:    :+:   */
+/*   matrix.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbirge-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/25 16:01:12 by dbirge-c          #+#    #+#             */
-/*   Updated: 2018/04/25 16:01:14 by dbirge-c         ###   ########.fr       */
+/*   Created: 2018/04/26 15:56:50 by dbirge-c          #+#    #+#             */
+/*   Updated: 2018/04/26 15:56:50 by dbirge-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_math.h"
+#ifndef MATRIX_H
+# define MATRIX_H
 
-float		v2i_dot(t_vector2i v1, t_vector2i v2)
-{
-	return (v1.x * v2.x + v1.y * v2.y);
-}
+#include "ft_math.h"
 
-float		v2i_angle(t_vector2i v1, t_vector2i v2)
+typedef struct	s_matrix
 {
-	return (acosf(v2i_dot(v1, v2) / (v2i_mag(v1) * v2i_mag(v2))) * 180.0 / PI);
-}
+	float	m[4][4];
+}				t_matrix;
 
-float		v2i_mag(t_vector2i vec2i)
-{
-	return (sqrtf(vec2i.x * vec2i.x + vec2i.y * vec2i.y));
-}
+t_matrix		m_new(float data[4][4]);
+t_matrix		m_identity();
+t_matrix		m_add(t_matrix m1, t_matrix m2);
+t_matrix		m_scale(t_matrix m, float factor);
+t_matrix		m_transpose(t_matrix m);
+
+t_vector3d		m_pt_apply(t_vector3d v, t_matrix m);
+t_vector3d		m_vec_apply(t_vector3d v, t_matrix m);
+
+#endif

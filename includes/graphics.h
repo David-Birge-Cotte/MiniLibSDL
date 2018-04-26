@@ -18,7 +18,7 @@
 */
 # include <SDL2/SDL.h>
 # include "../libft/libft.h"
-# include "ft_math.h"
+# include "ft_math/ft_math.h"
 
 /*
 ** optionnal libraries
@@ -41,6 +41,29 @@
 # define GREEN	0	, 255	, 0		, 255
 # define BLUE	0	, 0		, 255	, 255
 # define TRANSP	0	, 0		, 0		, 0
+
+
+// todo, maybe not
+typedef struct		s_transform
+{
+	t_vector3d		pos;
+	t_vector3d		rot;
+	t_vector3d		scale;
+}					t_transform;
+
+/*
+** Simple .obj-like 3D mesh
+** *vertex : the list of 3d points
+** *triangles : the list of triangles containing x, y, z beeing indexes -> vertex[x] vertex[y] vertex[z]
+*/
+
+typedef struct		s_mesh
+{
+	t_transform		transform;
+	t_vector3d		*vertex;
+	t_vector3d		*trianges;
+	size_t			nb_tris;
+}					t_mesh;
 
 /*
 ** Boolean type 0 = FALSE, 1 = TRUE
@@ -132,5 +155,10 @@ void			quit_app(void);
 ** Fractal (use for test with apply_fnc_to_each_pixel())
 */
 t_color			*draw_frac(t_uint32 x, t_uint32 y);
+
+
+// TMP
+t_mesh			create_box(size_t width, size_t height, size_t depth);
+void			draw_mesh(t_uint32 *pixels, t_mesh mesh);
 
 #endif

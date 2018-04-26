@@ -22,13 +22,18 @@ SRCS =	main.c \
 		colors.c \
 		sdl_allocator.c \
 		app_allocator.c \
+		ft_math/v2i/vector2i.c \
+		ft_math/v2i/vector2i_1.c \
+		ft_math/v2f/vector2f.c \
+		ft_math/v2f/vector2f_1.c \
+		ft_math/v3d/vector3d.c \
+		ft_math/v3d/vector3d_1.c \
+		ft_math/matrix/matrix.c \
+		ft_math/matrix/matrix_vectors.c \
+		ft_math/clamp.c \
 		ft_math/maths_help.c \
 		ft_math/interpolations.c \
-		ft_math/vector2i.c \
-		ft_math/vector2i_1.c \
-		ft_math/vector2f.c \
-		ft_math/vector2f_1.c \
-		ft_math/clamp.c
+		tmp.c
 OBJS = $(addprefix $(OBJ_DIR), $(SRCS:.c=.o))
 NAME = sdl_simple
 CC = gcc

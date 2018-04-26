@@ -10,15 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_math.h"
+#include "../../../includes/ft_math/v2f.h"
 
 t_vector2f	v2f(float x, float y)
 {
-	t_vector2f	vec2f;
+	t_vector2f	v;
 
-	vec2f.x = x;
-	vec2f.y = y;
-	return (vec2f);
+	v.x = x;
+	v.y = y;
+	return (v);
 }
 
 t_vector2f	v2f_add(t_vector2f v1, t_vector2f v2)
@@ -31,12 +31,12 @@ t_vector2f	v2f_sub(t_vector2f v1, t_vector2f v2)
 	return (v2f(v1.x - v2.x, v1.y - v2.y));
 }
 
-t_vector2f	v2f_unit(t_vector2f vec2f)
+t_vector2f	v2f_unit(t_vector2f v)
 {
 	float 		mag;
 
-	mag = v2f_mag(vec2f);
-	return (v2f(vec2f.x / mag, vec2f.y / mag));
+	mag = v2f_mag(v);
+	return (v2f(v.x / mag, v.y / mag));
 }
 
 t_vector2f	v2f_scale(t_vector2f v, float factor)

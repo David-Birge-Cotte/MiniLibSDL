@@ -1,42 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clamp.c                                            :+:      :+:    :+:   */
+/*   vector2i_1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbirge-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/23 15:23:11 by dbirge-c          #+#    #+#             */
-/*   Updated: 2018/04/23 15:23:13 by dbirge-c         ###   ########.fr       */
+/*   Created: 2018/04/25 16:01:12 by dbirge-c          #+#    #+#             */
+/*   Updated: 2018/04/25 16:01:14 by dbirge-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_math/ft_math.h"
+#include "../../../includes/ft_math/v2i.h"
 
-/*
-** Clamps a value between a min and max
-** float clampf, int clampi
-*/
-
-float	clampf(float min, float max, float val)
+float		v2i_dot(t_vector2i v1, t_vector2i v2)
 {
-	float ret;
-
-	ret = val;
-	if (val > max)
-		ret = max;
-	else if (val < min)
-		ret = min;
-	return (ret);
+	return (v1.x * v2.x + v1.y * v2.y);
 }
 
-int		clampi(int min, int max, int val)
+float		v2i_angle(t_vector2i v1, t_vector2i v2)
 {
-	int ret;
+	return (acosf(v2i_dot(v1, v2) / (v2i_mag(v1) * v2i_mag(v2))));
+}
 
-	ret = val;
-	if (val > max)
-		ret = max;
-	else if (val < min)
-		ret = min;
-	return (ret);
+float		v2i_mag(t_vector2i v)
+{
+	return (sqrtf(v.x * v.x + v.y * v.y));
 }
