@@ -30,6 +30,8 @@ SRCS =	main.c \
 		ft_math/v3d/vector3d_1.c \
 		ft_math/matrix/matrix.c \
 		ft_math/matrix/matrix_vectors.c \
+		ft_math/matrix/matrix_op.c \
+		ft_math/matrix/matrix_rot.c \
 		ft_math/clamp.c \
 		ft_math/maths_help.c \
 		ft_math/interpolations.c \

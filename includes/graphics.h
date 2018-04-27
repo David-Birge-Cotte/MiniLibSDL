@@ -42,15 +42,6 @@
 # define BLUE	0	, 0		, 255	, 255
 # define TRANSP	0	, 0		, 0		, 0
 
-
-// todo, maybe not
-typedef struct		s_transform
-{
-	t_vector3d		pos;
-	t_vector3d		rot;
-	t_vector3d		scale;
-}					t_transform;
-
 /*
 ** Simple .obj-like 3D mesh
 ** *vertex : the list of 3d points
@@ -59,11 +50,24 @@ typedef struct		s_transform
 
 typedef struct		s_mesh
 {
-	t_transform		transform;
+	t_matrix		transform;
 	t_vector3d		*vertex;
 	t_vector3d		*trianges;
 	size_t			nb_tris;
 }					t_mesh;
+
+typedef struct		s_camera
+{
+	t_matrix		projection;
+	t_matrix		transform;
+}					t_camera;
+
+typedef struct		s_scene
+{
+	t_camera		camera;
+	t_mesh			*objs;
+	size_t			nb_obj;
+}					t_scene;
 
 /*
 ** Boolean type 0 = FALSE, 1 = TRUE
@@ -113,7 +117,7 @@ typedef struct		s_app
 	t_uint32		*pixels;
 	size_t			nb_pixels;
 	t_sdl			*sdl;
-	t_data			*data;
+	t_scene			scene;
 }					t_app;
 
 /*

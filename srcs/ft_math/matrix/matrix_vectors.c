@@ -16,7 +16,7 @@
 ** Applies a matrix on a point
 */
 
-t_vector3d	m_pt_apply(t_vector3d v, t_matrix m)
+t_vector3d	m_pt_apply(t_vector3d const v, t_matrix const m)
 {
 	t_vector3d	vec;
 	float		w;
@@ -34,7 +34,7 @@ t_vector3d	m_pt_apply(t_vector3d v, t_matrix m)
 ** Applies a matrix on a vector
 */
 
-t_vector3d	m_vec_apply(t_vector3d v, t_matrix m)
+t_vector3d	m_vec_apply(t_vector3d const v, t_matrix const m)
 {
 	t_vector3d	vec;
 

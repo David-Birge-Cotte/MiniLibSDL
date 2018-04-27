@@ -16,17 +16,19 @@
 ** Creates a new matrix from a 4x4 array
 */
 
-t_matrix	m_new(float data[4][4])
+t_matrix	m_new(float const data[4][4])
 {
 	t_matrix	m;
 	size_t		i;
 	size_t		j;
 
 	i = -1;
-	j = -1;
 	while (++i < 4)
+	{
+		j = -1;
 		while (++j < 4)
 			m.m[i][j] = data[i][j];
+	}
 	return (m);
 }
 
@@ -41,45 +43,12 @@ t_matrix	m_identity()
 	size_t		j;
 
 	i = -1;
-	j = -1;
 	while (++i < 4)
+	{
+		j = -1;
 		while (++j < 4)
 			m.m[i][j] = (i == j ? 1 : 0);
-	return (m);
-}
-
-/*
-** Adds two matrix together
-*/
-
-t_matrix	m_add(t_matrix m1, t_matrix m2)
-{
-	t_matrix	m;
-	size_t		i;
-	size_t		j;
-
-	i = -1;
-	j = -1;
-	while (++i < 4)
-		while (++j < 4)
-			m.m[i][j] = m1.m[i][j] + m2.m[i][j];
-	return (m);
-}
-
-/*
-** Scales a matrix by a factor
-*/
-
-t_matrix	m_scale(t_matrix m, float factor)
-{
-	size_t		i;
-	size_t		j;
-
-	i = -1;
-	j = -1;
-	while (++i < 4)
-		while (++j < 4)
-			m.m[i][j] *= factor;
+	}
 	return (m);
 }
 
@@ -87,16 +56,37 @@ t_matrix	m_scale(t_matrix m, float factor)
 ** Swap rows and column
 */
 
-t_matrix	m_transpose(t_matrix m)
+t_matrix	m_transpose(t_matrix const m)
 {
-	t_matrix	t_m;
+	t_matrix	ma;
 	size_t		i;
 	size_t		j;
 
 	i = -1;
-	j = -1;
 	while (++i < 4)
+	{
+		j = -1;
 		while (++j < 4)
-			t_m.m[i][j] = m.m[j][i];
-	return (t_m);
+			ma.m[i][j] = m.m[j][i];
+	}
+		
+	return (ma);
+}
+
+void		m_print(t_matrix const m)
+{
+	size_t		i;
+	size_t		j;
+
+	j = -1;
+	while (++j < 4)
+	{
+		i = -1;
+		while (++i < 4)
+		{
+			ft_putnbr((int)m.m[i][j]);
+			ft_putchar(' ');
+		}
+		ft_putchar('\n');
+	}
 }

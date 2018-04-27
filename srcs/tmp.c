@@ -34,16 +34,6 @@ void	draw_mesh(t_uint32 *pixels, t_mesh mesh)
 	}
 }
 
-static t_transform	init_transform()
-{
-	t_transform	tr;
-
-	tr.pos = v3d(0, 0, 0);
-	tr.rot = v3d(0, 0, 0);
-	tr.scale = v3d(1, 1, 1);
-	return (tr);
-}
-
 t_mesh	create_box(size_t width, size_t height, size_t depth)
 {
 	t_mesh	mesh;
@@ -51,7 +41,7 @@ t_mesh	create_box(size_t width, size_t height, size_t depth)
 	mesh.vertex = ft_memalloc(sizeof(t_vector3d) * 8);
 	mesh.trianges = ft_memalloc(sizeof(t_vector3d) * 12);
 	mesh.nb_tris = 12;
-	mesh.transform = init_transform();
+	mesh.transform = m_identity();
 
 	// all vertices
 	mesh.vertex[0] = v3d(0, 0, 0);
