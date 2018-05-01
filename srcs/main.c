@@ -29,20 +29,11 @@ static void			loop(t_app *app)
 
 static void			start(t_app *app)
 {
-	t_mesh	box;
+	app->scene = new_scene();
 
-	box = create_box(5, 5, 2);
-	box.transform = m_translate(box.transform, v3d(5, 0, 0));
-	box.transform = m_rotate(box.transform, v3d(0, 45, 0));
-	app->scene.camera.transform = m_identity();
-	app->scene.camera.projection = m_identity();
-	app->scene.objs = (t_mesh*)ft_memalloc(sizeof(t_mesh) * 1);
-	app->scene.objs[0] = box;
-	app->scene.nb_obj = 1;
+	m_print(app->scene.objs[0].transform);
 
-	//m_print(box.transform);
-
-	draw_mesh(app->pixels, box);
+	//draw_mesh(app->pixels, box);
 }
 
 /*

@@ -26,6 +26,13 @@
 
 # define PI 3.14159265358979323846
 
+typedef struct	s_frame
+{
+	t_vector3d	x;
+	t_vector3d	y;
+	t_vector3d	z;
+}				t_frame;
+
 /*
 ** Other
 */

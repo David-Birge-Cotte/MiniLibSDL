@@ -16,7 +16,7 @@
 ** Translates a matrix
 */
 
-static t_matrix	m_create_translation(t_vector3d const v)
+t_matrix	m_translate(t_vector3d const v)
 {
 	t_matrix	m;
 
@@ -25,14 +25,6 @@ static t_matrix	m_create_translation(t_vector3d const v)
 	m.m[1][3] = v.y;
 	m.m[2][3] = v.z;
 	return (m);
-}
-
-t_matrix	m_translate(t_matrix const m, t_vector3d const v)
-{
-	t_matrix	ma;
-
-	ma = m_mult(m, m_create_translation(v));
-	return (ma);
 }
 
 /*

@@ -35,7 +35,9 @@ SRCS =	main.c \
 		ft_math/clamp.c \
 		ft_math/maths_help.c \
 		ft_math/interpolations.c \
-		tmp.c
+		scenes/scene_01.c \
+		tmp.c \
+		raytracing.c
 OBJS = $(addprefix $(OBJ_DIR), $(SRCS:.c=.o))
 NAME = sdl_simple
 CC = gcc
@@ -45,7 +47,7 @@ SDL = `sdl2-config --cflags --libs`
 all: library $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(SDL) $(OBJS) -L ./libft -l ft -o $@
+	@$(CC) $(CFLAGS) $(SDL) $(OBJS) -L ./libft -l ft -o $@ -lSDL2-2.0 -lm
 	@echo "$(NAME) compiled"
 
 library:

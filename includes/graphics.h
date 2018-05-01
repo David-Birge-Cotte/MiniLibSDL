@@ -28,8 +28,8 @@
 /*
 ** Window settings
 */
-# define WIN_WIDTH (1024)
-# define WIN_HEIGHT (1024)
+# define WIN_WIDTH (512)
+# define WIN_HEIGHT (512)
 # define WIN_TITLE "Window Title"
 
 /*
@@ -43,33 +43,6 @@
 # define TRANSP	0	, 0		, 0		, 0
 
 /*
-** Simple .obj-like 3D mesh
-** *vertex : the list of 3d points
-** *triangles : the list of triangles containing x, y, z beeing indexes -> vertex[x] vertex[y] vertex[z]
-*/
-
-typedef struct		s_mesh
-{
-	t_matrix		transform;
-	t_vector3d		*vertex;
-	t_vector3d		*trianges;
-	size_t			nb_tris;
-}					t_mesh;
-
-typedef struct		s_camera
-{
-	t_matrix		projection;
-	t_matrix		transform;
-}					t_camera;
-
-typedef struct		s_scene
-{
-	t_camera		camera;
-	t_mesh			*objs;
-	size_t			nb_obj;
-}					t_scene;
-
-/*
 ** Boolean type 0 = FALSE, 1 = TRUE
 */
 typedef enum		e_bool
@@ -78,9 +51,20 @@ typedef enum		e_bool
 	TRUE
 }					t_bool;
 
+typedef enum		e_objtype
+{
+	SPHERE,
+	CONE,
+	CYLINDER,
+	CUBE,
+	PLANE,
+	MESH
+}					t_objtype;
+
 /*
 ** 32 bit color structure RGBA8888
 */
+
 typedef struct		s_color
 {
 	t_uint8			r;
@@ -89,17 +73,73 @@ typedef struct		s_color
 	t_uint8			a;
 }					t_color;
 
+
 /*
-** This data structure is used to store custom game/app data
+** Ray used for Ray-tracing
 */
-typedef struct		s_data
+
+typedef struct		s_ray
 {
-	t_uint32		score;
-}					t_data;
+	t_vector3d		pos;
+	t_vector3d		dir;
+}					t_ray;
+
+typedef struct		s_light
+{
+	t_vector3d		pos;
+	float			intensity;
+}					t_light;
+
+/*
+** .obj-like mesh with vertices and triangles referencing the vertices
+*/
+
+typedef struct		s_mesh
+{
+	t_vector3d		*vertex;
+	t_vector3d		*trianges;
+	size_t			nb_tris;
+}					t_mesh;
+
+/*
+** 3D object with a transform in world space
+** the mesh pointer is null unless type == MESH
+*/
+
+typedef struct		s_3dobject
+{
+	t_matrix		transform;
+	t_objtype		type;
+	t_mesh			*mesh;
+}					t_3dobject;
+
+/*
+** Simple camera with a transform and a projection matrix
+*/
+
+typedef struct		s_camera
+{
+	t_matrix		projection;
+	t_matrix		transform;
+}					t_camera;
+
+/*
+** Simple scene with one camera and some 3D objects
+*/
+
+typedef struct		s_scene
+{
+	t_camera		camera;
+	t_3dobject		*objs;
+	size_t			nb_obj;
+	t_light			*lights;
+	size_t			nb_lights;
+}					t_scene;
 
 /*
 ** Contains the bare minimum for communicating with the SDL library
 */
+
 typedef struct		s_sdl
 {
 	SDL_Window		*win;
@@ -111,6 +151,7 @@ typedef struct		s_sdl
 /*
 ** App structure instantiated in main()
 */
+
 typedef struct		s_app
 {
 	t_bool			loop;
@@ -161,8 +202,13 @@ void			quit_app(void);
 t_color			*draw_frac(t_uint32 x, t_uint32 y);
 
 
+/*
+** Scenes
+*/
+t_scene			new_scene();
+
 // TMP
-t_mesh			create_box(size_t width, size_t height, size_t depth);
+t_mesh			*create_box(size_t size_x, size_t size_y, size_t size_z);
 void			draw_mesh(t_uint32 *pixels, t_mesh mesh);
 
 #endif
