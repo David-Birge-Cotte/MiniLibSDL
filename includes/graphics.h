@@ -90,6 +90,12 @@ typedef struct		s_light
 	float			intensity;
 }					t_light;
 
+typedef struct		s_mat
+{
+	t_color			diffuse;
+	float			specular;
+}					t_mat;
+
 /*
 ** .obj-like mesh with vertices and triangles referencing the vertices
 */
@@ -106,12 +112,23 @@ typedef struct		s_mesh
 ** the mesh pointer is null unless type == MESH
 */
 
+typedef t_bool (*intersect)(const t_ray ray, const t_matrix transform);
+
 typedef struct		s_3dobject
 {
 	t_matrix		transform;
 	t_objtype		type;
 	t_mesh			*mesh;
+	t_mat			mat;
+	intersect		inter;
 }					t_3dobject;
+
+typedef struct		s_hit_data
+{
+	t_vector3d		pos;
+	t_3dobject		obj;
+}					t_hit_data;
+
 
 /*
 ** Simple camera with a transform and a projection matrix
@@ -179,6 +196,9 @@ void			handle_event(t_app *app);
 ** Ray Tracing
 */
 t_color			*ray_trace(t_uint32 x, t_uint32 y, t_app *app);
+
+t_bool			box_intersect(const t_ray ray, const t_matrix transform);
+t_bool			sphere_intersect(const t_ray ray, const t_matrix transform);
 
 /*
 ** Draw

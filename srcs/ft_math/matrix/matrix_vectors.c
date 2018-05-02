@@ -43,3 +43,17 @@ t_vector3d	m_vec_apply(const t_vector3d v, const t_matrix m)
 	vec.z = v.x * m.m[2][0] + v.y * m.m[2][1] + v.z * m.m[2][2];
 	return (vec);
 }
+
+/*
+** Gets the position froma a matrix
+*/
+
+t_vector3d	m_to_pos(const t_matrix m)
+{
+	t_vector3d	v;
+
+	v.x = m.m[0][3];
+	v.x = m.m[1][3];
+	v.x = m.m[2][3];
+	return (v);
+}

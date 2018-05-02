@@ -19,8 +19,6 @@
 static void			loop(t_app *app)
 {
 	handle_event(app);
-	calculate_frame(app);
-	display(app->sdl, app->pixels);
 }
 
 /*
@@ -30,6 +28,8 @@ static void			loop(t_app *app)
 static void			start(t_app *app)
 {
 	app->scene = new_scene();
+	calculate_frame(app);
+	display(app->sdl, app->pixels);
 }
 
 /*

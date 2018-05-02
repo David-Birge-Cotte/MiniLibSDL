@@ -37,6 +37,7 @@ SRCS =	main.c \
 		ft_math/interpolations.c \
 		scenes/scene_01.c \
 		tmp.c \
+		primitive/primitives.c \
 		raytracing.c
 OBJS = $(addprefix $(OBJ_DIR), $(SRCS:.c=.o))
 NAME = sdl_simple
