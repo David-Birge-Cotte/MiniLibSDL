@@ -28,8 +28,8 @@
 /*
 ** Window settings
 */
-# define WIN_WIDTH (512)
-# define WIN_HEIGHT (512)
+# define WIN_WIDTH (1024)
+# define WIN_HEIGHT (1024)
 # define WIN_TITLE "Window Title"
 
 /*
@@ -119,7 +119,6 @@ typedef struct		s_3dobject
 
 typedef struct		s_camera
 {
-	t_matrix		projection;
 	t_matrix		transform;
 }					t_camera;
 
@@ -166,7 +165,8 @@ typedef struct		s_app
 */
 t_uint32		color_to_pixeldata(const t_color *color);
 t_color			*new_color(t_uint8 r, t_uint8 g, t_uint8 b, t_uint8 a);
-t_color			*copy_color(const t_color *color_cpy);
+t_color			color(t_uint8 r, t_uint8 g, t_uint8 b, t_uint8 a);
+t_color			*add_to_color(t_color *original, const t_color *color_to_add);
 t_color			*lerp_color(const t_color *start, const t_color *end, float t);
 
 /*
@@ -176,16 +176,22 @@ void			handle_event(t_app *app);
 
 
 /*
+** Ray Tracing
+*/
+t_color			*ray_trace(t_uint32 x, t_uint32 y, t_app *app);
+
+/*
 ** Draw
 */
 void			calculate_frame(t_app *app);
-void			apply_fnc_to_each_pixel(t_uint32 *pixels, t_color *(*fnc_ptr)(t_uint32, t_uint32));
-void			clear_frame(t_uint32 *pixels, size_t nb_pixels);
-void			fill_frame (t_uint32 *pixels, size_t nb_pixels, t_color *color);
+void			apply_fnc_to_each_pixel(t_app *app,
+					t_color *(*fnc_ptr)(t_uint32, t_uint32, t_app *app));
+void			fill_frame(t_uint32 *pixels, size_t nb_pixels, t_color *color);
 int				display(t_sdl *sdl, t_uint32 *pixels);
 void			put_pixel(t_uint32 *pixels, t_uint32 x, t_uint32 y, const t_color *color);
 void			draw_line(t_uint32 *pixels, t_vector2i p1, t_vector2i p2, const t_color *color);
 t_color			*draw_frac(t_uint32 x, t_uint32 y);
+t_color			*noise(t_uint32 x, t_uint32 y, t_app *app);
 
 /*
 ** App & SDL

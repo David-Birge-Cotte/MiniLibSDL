@@ -20,16 +20,16 @@ typedef struct	s_matrix
 	float	m[4][4];
 }				t_matrix;
 
-t_matrix		m_new(float const data[4][4]);
 t_matrix		m_identity();
-t_matrix		m_transpose(t_matrix const m);
-t_matrix		m_add(t_matrix const m1, t_matrix const m2);
-t_matrix		m_mult(t_matrix const m1, t_matrix const m2);
-t_matrix		m_scale(t_matrix const m, t_vector3d const v);
-t_matrix		m_translate(t_vector3d const v);
-t_matrix		m_rotate(t_vector3d const v);
-t_vector3d		m_pt_apply(t_vector3d const v, t_matrix const m);
-t_vector3d		m_vec_apply(t_vector3d const v, t_matrix const m);
-void			m_print(t_matrix const m);
+t_matrix		m_new(const float data[4][4]);
+t_matrix		m_transpose(const t_matrix m);
+t_matrix		m_add(const t_matrix m1, const t_matrix m2);
+t_matrix		m_mult(const t_matrix m1, const t_matrix m2);
+t_matrix		m_scale(const t_vector3d v);
+t_matrix		m_translate(const t_vector3d v);
+t_matrix		m_rotate(const t_vector3d v);
+t_vector3d		m_pt_apply(const t_vector3d v, const t_matrix m);
+t_vector3d		m_vec_apply(const t_vector3d v, const t_matrix m);
+void			m_print(const t_matrix m);
 
 #endif

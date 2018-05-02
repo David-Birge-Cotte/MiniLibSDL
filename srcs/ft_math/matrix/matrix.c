@@ -16,7 +16,7 @@
 ** Creates a new matrix from a 4x4 array
 */
 
-t_matrix	m_new(float const data[4][4])
+t_matrix	m_new(const float data[4][4])
 {
 	t_matrix	m;
 	size_t		i;
@@ -56,7 +56,7 @@ t_matrix	m_identity()
 ** Swap rows and column
 */
 
-t_matrix	m_transpose(t_matrix const m)
+t_matrix	m_transpose(const t_matrix m)
 {
 	t_matrix	ma;
 	size_t		i;
@@ -73,7 +73,7 @@ t_matrix	m_transpose(t_matrix const m)
 	return (ma);
 }
 
-void		m_print(t_matrix const m)
+void		m_print(const t_matrix m)
 {
 	size_t		i;
 	size_t		j;

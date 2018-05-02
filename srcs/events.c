@@ -24,10 +24,11 @@ static void	keydown(t_app *app, int keycode)
 
 void		handle_event(t_app *app)
 {
-	if (SDL_PollEvent(app->sdl->event) == 0)
-		return ;
-	if (app->sdl->event->type == SDL_QUIT)
-		app->loop = FALSE;
-	else if (app->sdl->event->type == SDL_KEYDOWN)
-		keydown(app, app->sdl->event->key.keysym.sym);
+	while (SDL_PollEvent(app->sdl->event))
+	{
+		if (app->sdl->event->type == SDL_QUIT)
+			app->loop = FALSE;
+		else if (app->sdl->event->type == SDL_KEYDOWN)
+			keydown(app, app->sdl->event->key.keysym.sym);
+	}
 }

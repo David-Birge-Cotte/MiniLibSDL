@@ -79,3 +79,15 @@ t_mesh	*create_box(size_t size_x, size_t size_y, size_t size_z)
 
 	return (mesh);
 }
+
+t_color	*noise(t_uint32 x, t_uint32 y, t_app *app)
+{
+	t_color		*color;
+	static t_uint32	seed = 42;
+	t_uint32		rng;
+
+	seed++;
+	rng = rand_r(&seed);
+	color = new_color(rng, rng, rng, 255);
+	return (color);
+}

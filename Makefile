@@ -41,13 +41,13 @@ SRCS =	main.c \
 OBJS = $(addprefix $(OBJ_DIR), $(SRCS:.c=.o))
 NAME = sdl_simple
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = #-Wall -Wextra -Werror
 SDL = `sdl2-config --cflags --libs`
 
 all: library $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(SDL) $(OBJS) -L ./libft -l ft -o $@ -lSDL2-2.0 -lm
+	@$(CC) $(CFLAGS) $(SDL) $(OBJS) -L ./libft -l ft -o $@
 	@echo "$(NAME) compiled"
 
 library:

@@ -19,7 +19,7 @@
 static void			loop(t_app *app)
 {
 	handle_event(app);
-	//calculate_frame(app);
+	calculate_frame(app);
 	display(app->sdl, app->pixels);
 }
 
@@ -30,10 +30,6 @@ static void			loop(t_app *app)
 static void			start(t_app *app)
 {
 	app->scene = new_scene();
-
-	m_print(app->scene.objs[0].transform);
-
-	//draw_mesh(app->pixels, box);
 }
 
 /*

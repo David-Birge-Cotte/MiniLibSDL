@@ -16,7 +16,7 @@
 ** Translates a matrix
 */
 
-t_matrix	m_translate(t_vector3d const v)
+t_matrix	m_translate(const t_vector3d v)
 {
 	t_matrix	m;
 
@@ -31,7 +31,7 @@ t_matrix	m_translate(t_vector3d const v)
 ** Adds two matrix together
 */
 
-t_matrix	m_add(t_matrix const m1, t_matrix const m2)
+t_matrix	m_add(const t_matrix m1, const t_matrix m2)
 {
 	t_matrix	m;
 	size_t		i;
@@ -51,7 +51,7 @@ t_matrix	m_add(t_matrix const m1, t_matrix const m2)
 ** Multiply two matrix together
 */
 
-t_matrix	m_mult(t_matrix const m1, t_matrix const m2)
+t_matrix	m_mult(const t_matrix m1, const t_matrix m2)
 {
 	t_matrix	m;
 	size_t		i;
@@ -74,13 +74,13 @@ t_matrix	m_mult(t_matrix const m1, t_matrix const m2)
 ** Scales a matrix by a vector
 */
 
-t_matrix	m_scale(t_matrix const m, t_vector3d const v)
+t_matrix	m_scale(const t_vector3d v)
 {
-	t_matrix	ma;
+	t_matrix	m;
 
-	ma = m_new(m.m);
-	ma.m[0][0] *= v.x;
-	ma.m[1][1] *= v.y;
-	ma.m[2][2] *= v.z;
-	return (ma);
+	m = m_identity();
+	m.m[0][0] *= v.x;
+	m.m[1][1] *= v.y;
+	m.m[2][2] *= v.z;
+	return (m);
 }

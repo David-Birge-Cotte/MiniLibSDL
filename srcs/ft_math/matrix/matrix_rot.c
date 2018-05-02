@@ -12,7 +12,7 @@
 
 #include "../../../includes/ft_math/matrix.h"
 
-static t_matrix	m_create_rot_x(float const a)
+static t_matrix	m_create_rot_x(const float a)
 {
 	t_matrix	m;
 
@@ -24,7 +24,7 @@ static t_matrix	m_create_rot_x(float const a)
 	return (m);
 }
 
-static t_matrix	m_create_rot_y(float const a)
+static t_matrix	m_create_rot_y(const float a)
 {
 	t_matrix	m;
 
@@ -36,7 +36,7 @@ static t_matrix	m_create_rot_y(float const a)
 	return (m);
 }
 
-static t_matrix	m_create_rot_z(float const a)
+static t_matrix	m_create_rot_z(const float a)
 {
 	t_matrix	m;
 
@@ -48,7 +48,7 @@ static t_matrix	m_create_rot_z(float const a)
 	return (m);
 }
 
-t_matrix	m_rotate(t_vector3d const v)
+t_matrix	m_rotate(const t_vector3d v)
 {
 	t_matrix	m;
 

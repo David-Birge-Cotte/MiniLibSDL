@@ -29,7 +29,7 @@ t_uint32		color_to_pixeldata(const t_color *color)
 }
 
 /*
-** Creates a new color
+** Creates a new pointer to color
 */
 
 t_color			*new_color(t_uint8 r, t_uint8 g, t_uint8 b, t_uint8 a)
@@ -45,14 +45,17 @@ t_color			*new_color(t_uint8 r, t_uint8 g, t_uint8 b, t_uint8 a)
 }
 
 /*
-** Creates a new color, pointing to a copy of a color
+** Creates a new color
 */
 
-t_color			*copy_color(const t_color *color_cpy)
+t_color			color(t_uint8 r, t_uint8 g, t_uint8 b, t_uint8 a)
 {
-	t_color	*color;
+	t_color	color;
 
-	color = new_color(color_cpy->r, color_cpy->g, color_cpy->b, color_cpy->a);
+	color.r = r;
+	color.g = g;
+	color.b = b;
+	color.a = a;
 	return (color);
 }
 

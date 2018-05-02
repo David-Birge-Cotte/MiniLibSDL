@@ -19,24 +19,11 @@
 
 void	calculate_frame(t_app *app)
 {
-	static int	i = 0;
-	t_color		*white;
-	t_vector2i	left;
-	t_vector2i	right;
+	t_color coloro;
 
-	clear_frame(app->pixels, app->nb_pixels);
-
-	if (i < WIN_WIDTH)
-		i++;
-	else
-		i = 0;
-
-	white = new_color(WHITE);
-	left = v2i(i, i);
-	right = v2i(WIN_WIDTH - i, WIN_HEIGHT - i);
-
-	draw_line(app->pixels, left, right, white);
-	ft_memdel((void**)&white);
+	coloro = color(BLACK);
+	fill_frame(app->pixels, app->nb_pixels, &coloro);
+	apply_fnc_to_each_pixel(app, &ray_trace);
 }
 
 /*
@@ -44,8 +31,8 @@ void	calculate_frame(t_app *app)
 ** The function takes pixel coordonates t_uint32 x, y as arguments
 */
 
-void	apply_fnc_to_each_pixel(t_uint32 *pixels,
-			t_color *(*fnc_ptr)(t_uint32, t_uint32))
+void	apply_fnc_to_each_pixel(t_app *app,
+			t_color *(*fnc_ptr)(t_uint32, t_uint32, t_app *app))
 {
 	t_uint32	x;
 	t_uint32	y;
@@ -56,7 +43,7 @@ void	apply_fnc_to_each_pixel(t_uint32 *pixels,
 		y = 0;
 		while (y < WIN_HEIGHT)
 		{
-			put_pixel(pixels, x, y, fnc_ptr(x, y));
+			put_pixel(app->pixels, x, y, fnc_ptr(x, y, app));
 			y++;
 		}
 		x++;

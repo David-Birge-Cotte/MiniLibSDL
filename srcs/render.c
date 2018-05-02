@@ -16,25 +16,15 @@
 ** Sets all the pixels of the frame to a color
 */
 
-void	fill_frame (t_uint32 *pixels, size_t nb_pixels, t_color *color)
+void	fill_frame(t_uint32 *pixels, size_t nb_pixels, t_color *color)
 {
 	t_uint32	pixel_color;
+	size_t		i;
 	
 	pixel_color = color_to_pixeldata(color);
-	ft_memset((void*)pixels, pixel_color, (size_t)(nb_pixels * sizeof(t_uint32)));
-}
-
-/*
-** Sets all the pixels of the frame to a 0 (transparent)
-*/
-
-void	clear_frame(t_uint32 *pixels, size_t nb_pixels)
-{
-	t_color	*transparent;
-
-	transparent = new_color(TRANSP);
-	fill_frame(pixels, nb_pixels, transparent);
-	ft_memdel((void**)&transparent);
+	i = 0;
+	while (i < nb_pixels)
+		pixels[i++] = pixel_color;
 }
 
 /*
