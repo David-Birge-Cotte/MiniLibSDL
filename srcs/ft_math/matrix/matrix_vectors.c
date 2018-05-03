@@ -45,7 +45,7 @@ t_vector3d	m_vec_apply(const t_vector3d v, const t_matrix m)
 }
 
 /*
-** Gets the position froma a matrix
+** Gets the position from a matrix
 */
 
 t_vector3d	m_to_pos(const t_matrix m)
@@ -53,7 +53,21 @@ t_vector3d	m_to_pos(const t_matrix m)
 	t_vector3d	v;
 
 	v.x = m.m[0][3];
-	v.x = m.m[1][3];
-	v.x = m.m[2][3];
+	v.y = m.m[1][3];
+	v.z = m.m[2][3];
+	return (v);
+}
+
+/*
+** Gets the scale from a matrix
+*/
+
+t_vector3d	m_to_scale(const t_matrix m)
+{
+	t_vector3d	v;
+
+	v.x = m.m[0][0];
+	v.y = m.m[1][1];
+	v.z = m.m[2][2];
 	return (v);
 }

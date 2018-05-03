@@ -38,7 +38,8 @@ SRCS =	main.c \
 		scenes/scene_01.c \
 		tmp.c \
 		primitive/primitives.c \
-		raytracing.c
+		raytracing/raytracing.c \
+		raytracing/ray.c
 OBJS = $(addprefix $(OBJ_DIR), $(SRCS:.c=.o))
 NAME = sdl_simple
 CC = gcc

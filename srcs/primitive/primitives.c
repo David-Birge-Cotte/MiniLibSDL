@@ -12,49 +12,38 @@
 
 #include "../../includes/graphics.h"
 
+/*
+** Solves a * t^2 + b*t + c = 0
+*/
 
-t_bool	sphere_intersect(const t_ray ray, const t_matrix transform)
+t_bool	sphere_intersect(const t_ray ray, const t_matrix transform,
+							t_hit_data *hit)
 {
 	double		a;
 	double		b;
 	double		c;
-	double		det;
-	t_vector3d	sphere_pos;
+	double		delta;
+	double		t;
 
-	sphere_pos = m_to_pos(transform);
-	a = pow(ray.dir.x, 2) + pow(ray.dir.y, 2) + pow(ray.dir.z, 2);
-	b = 2 * (ray.dir.x * (ray.pos.x - sphere_pos.x) +
-			ray.dir.y * (ray.pos.y - sphere_pos.y) +
-			ray.dir.z * (ray.pos.z - sphere_pos.z));
-	c = pow((ray.pos.x - sphere_pos.x), 2) +
-		pow((ray.pos.y - sphere_pos.y), 2) +
-		pow((ray.pos.z - sphere_pos.z), 2) - 1; // -1 for pow(radius, 2)
-	det = pow(b, 2) - 4 * a * c;
-	if (det >= 0)
-		return (TRUE);
-	return (FALSE);
+	a = v3d_norm2(ray.dir);
+	b = 2 * v3d_dot(ray.dir, v3d_sub(ray.pos, m_to_pos(transform)));
+	c = v3d_norm2(v3d_sub(ray.pos, m_to_pos(transform)))
+					- pow(m_to_scale(transform).x, 2);
+	delta = pow(b, 2) - 4 * a * c;
+	if (delta < 0)
+		return (FALSE);
+	if ((-b - sqrt(delta)) / (2 * a) > 0)
+		t = (-b - sqrt(delta)) / (2 * a);
+	else
+		t = (-b + sqrt(delta)) / (2 * a);
+	hit->pos = v3d_add(ray.pos, v3d_scale(ray.dir, t));
+	hit->normal = v3d_unit(v3d_sub(hit->pos, m_to_pos(transform)));
+	hit->t = t;
+	return (TRUE);
 }
 
-
-/*
-t_bool	sphere_intersect(const t_ray ray, const t_matrix transform)
-{
-	t_vector3d		l;
-	double		tca;
-	double 		d2;
-	double		det;
-	t_vector3d	sphere_pos;
-
-	sphere_pos = m_to_pos(transform);
-	l = v3d_add(sphere_pos, v3d(-ray.pos.x, -ray.pos.y, -ray.pos.z));
-	tca = v3d_dot(l, ray.dir);
-	d2 = v3d_dot(l, l) - tca * tca;
-	if (d2 > 1)
-		return (FALSE);
-	return (TRUE);
-}*/
-
-t_bool	box_intersect(const t_ray ray, const t_matrix transform)
+t_bool	plane_intersect(const t_ray ray, const t_matrix transform,
+						t_hit_data *hit)
 {
 	return (FALSE);
 }

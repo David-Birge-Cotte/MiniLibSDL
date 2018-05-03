@@ -48,7 +48,7 @@ t_color			*new_color(t_uint8 r, t_uint8 g, t_uint8 b, t_uint8 a)
 ** Creates a new color
 */
 
-t_color			color(t_uint8 r, t_uint8 g, t_uint8 b, t_uint8 a)
+t_color			to_color(t_uint8 r, t_uint8 g, t_uint8 b, t_uint8 a)
 {
 	t_color	color;
 
@@ -61,13 +61,13 @@ t_color			color(t_uint8 r, t_uint8 g, t_uint8 b, t_uint8 a)
 
 t_color			*add_to_color(t_color *original, const t_color *color_to_add)
 {
-	original->r = clampi(original->r, color_to_add->r,
+	original->r = clampi(0, 255,
 						original->r + color_to_add->r);
-	original->g = clampi(original->g, color_to_add->g,
+	original->g = clampi(0, 255,
 						original->g + color_to_add->g);
-	original->b = clampi(original->b, color_to_add->b,
+	original->b = clampi(0, 255,
 						original->b + color_to_add->b);
-	original->a = clampi(original->a, color_to_add->a,
+	original->a = clampi(0, 255,
 						original->a + color_to_add->a);
 	return (original);
 }
@@ -94,4 +94,15 @@ t_color			*lerp_color(const t_color *start, const t_color *end, float t)
 		lerp(start->b, end->b, t),
 		lerp(start->a, end->a, t));
 	return (color);
+}
+
+t_color			color_mult(const t_color color, const float m)
+{
+	t_color	col;
+
+	col = to_color(clampi(0, 255, color.r * m),
+					clampi(0, 255, color.g * m),
+					clampi(0, 255, color.b * m),
+					clampi(0, 255, color.a * m));
+	return (col);
 }

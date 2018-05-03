@@ -38,6 +38,7 @@ float				v3d_mag(t_vector3d v);
 float				v3d_dot(t_vector3d v1, t_vector3d v2);
 float				v3d_angle(t_vector3d v1, t_vector3d v2);
 t_vector3d			v3d_cross(t_vector3d v1, t_vector3d v2);
+float				v3d_norm2(t_vector3d v);
 
 t_coord_v3d			coord_frame(t_vector3d v1, t_vector3d v2);
 

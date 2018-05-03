@@ -31,6 +31,8 @@
 # define WIN_WIDTH (1024)
 # define WIN_HEIGHT (1024)
 # define WIN_TITLE "Window Title"
+# define CAM_FOV (60)
+# define AMBIANT (0.2f)
 
 /*
 ** Easy access simple colors RGBA8888
@@ -112,7 +114,15 @@ typedef struct		s_mesh
 ** the mesh pointer is null unless type == MESH
 */
 
-typedef t_bool (*intersect)(const t_ray ray, const t_matrix transform);
+typedef struct		s_hit_data
+{
+	t_vector3d		pos;
+	t_vector3d		normal;
+	t_mat			mat;
+	double			t;
+}					t_hit_data;
+
+typedef t_bool (*intersect)(const t_ray ray, const t_matrix transform, t_hit_data *hit);
 
 typedef struct		s_3dobject
 {
@@ -122,12 +132,6 @@ typedef struct		s_3dobject
 	t_mat			mat;
 	intersect		inter;
 }					t_3dobject;
-
-typedef struct		s_hit_data
-{
-	t_vector3d		pos;
-	t_3dobject		obj;
-}					t_hit_data;
 
 
 /*
@@ -182,9 +186,10 @@ typedef struct		s_app
 */
 t_uint32		color_to_pixeldata(const t_color *color);
 t_color			*new_color(t_uint8 r, t_uint8 g, t_uint8 b, t_uint8 a);
-t_color			color(t_uint8 r, t_uint8 g, t_uint8 b, t_uint8 a);
+t_color			to_color(t_uint8 r, t_uint8 g, t_uint8 b, t_uint8 a);
 t_color			*add_to_color(t_color *original, const t_color *color_to_add);
 t_color			*lerp_color(const t_color *start, const t_color *end, float t);
+t_color			color_mult(const t_color color, const float m);
 
 /*
 ** Events
@@ -195,23 +200,29 @@ void			handle_event(t_app *app);
 /*
 ** Ray Tracing
 */
-t_color			*ray_trace(t_uint32 x, t_uint32 y, t_app *app);
+t_color			ray_trace(t_uint32 x, t_uint32 y, t_app *app);
+t_ray			ray_from_cam(t_camera cam, t_uint32 x, t_uint32 y);
+t_ray			new_ray(t_vector3d pos, t_vector3d dir);
 
-t_bool			box_intersect(const t_ray ray, const t_matrix transform);
-t_bool			sphere_intersect(const t_ray ray, const t_matrix transform);
+/*
+** Primitive intersection
+*/
+
+t_bool			plane_intersect(const t_ray ray, const t_matrix transform, t_hit_data *hit);
+t_bool			sphere_intersect(const t_ray ray, const t_matrix transform, t_hit_data *hit);
 
 /*
 ** Draw
 */
 void			calculate_frame(t_app *app);
 void			apply_fnc_to_each_pixel(t_app *app,
-					t_color *(*fnc_ptr)(t_uint32, t_uint32, t_app *app));
+					t_color (*fnc_ptr)(t_uint32, t_uint32, t_app *app));
 void			fill_frame(t_uint32 *pixels, size_t nb_pixels, t_color *color);
 int				display(t_sdl *sdl, t_uint32 *pixels);
 void			put_pixel(t_uint32 *pixels, t_uint32 x, t_uint32 y, const t_color *color);
 void			draw_line(t_uint32 *pixels, t_vector2i p1, t_vector2i p2, const t_color *color);
 t_color			*draw_frac(t_uint32 x, t_uint32 y);
-t_color			*noise(t_uint32 x, t_uint32 y, t_app *app);
+t_color			noise(t_uint32 x, t_uint32 y, t_app *app);
 
 /*
 ** App & SDL

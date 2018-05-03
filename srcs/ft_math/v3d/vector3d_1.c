@@ -22,9 +22,14 @@ float		v3d_angle(t_vector3d v1, t_vector3d v2)
 	return (acosf(v3d_dot(v1, v2) / (v3d_mag(v1) * v3d_mag(v2))));
 }
 
+float		v3d_norm2(t_vector3d v)
+{
+	return (v.x * v.x + v.y * v.y + v.z * v.z);
+}
+
 float		v3d_mag(t_vector3d v)
 {
-	return (sqrtf(v.x * v.x + v.y * v.y + v.z * v.z));
+	return (sqrtf(v3d_norm2(v)));
 }
 
 t_vector3d	v3d_cross(t_vector3d v1, t_vector3d v2)

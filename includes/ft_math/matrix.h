@@ -31,6 +31,7 @@ t_matrix		m_rotate(const t_vector3d v);
 t_vector3d		m_pt_apply(const t_vector3d v, const t_matrix m);
 t_vector3d		m_vec_apply(const t_vector3d v, const t_matrix m);
 t_vector3d		m_to_pos(const t_matrix m);
+t_vector3d		m_to_scale(const t_matrix m);
 void			m_print(const t_matrix m);
 
 #endif
