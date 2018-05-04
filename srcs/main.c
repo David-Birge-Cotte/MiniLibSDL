@@ -19,6 +19,7 @@
 static void			loop(t_app *app)
 {
 	handle_event(app);
+	display(app->sdl, app->pixels);
 }
 
 /*

@@ -28,7 +28,7 @@ t_sdl	*new_sdl(void)
 		return (NULL);
 	if ((sdl->win = SDL_CreateWindow(WIN_TITLE, SDL_WINDOWPOS_CENTERED,
 			SDL_WINDOWPOS_CENTERED, WIN_WIDTH, WIN_HEIGHT,
-			0)) == NULL)
+			SDL_WINDOW_BORDERLESS)) == NULL)
 		return (NULL);
 	if ((sdl->renderer = SDL_CreateRenderer(sdl->win, -1, 0)) == NULL)
 		return (NULL);

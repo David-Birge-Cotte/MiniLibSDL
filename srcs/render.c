@@ -16,12 +16,12 @@
 ** Sets all the pixels of the frame to a color
 */
 
-void	fill_frame(t_uint32 *pixels, size_t nb_pixels, t_color *color)
+void	fill_frame(t_uint32 *pixels, size_t nb_pixels, t_color color)
 {
 	t_uint32	pixel_color;
 	size_t		i;
 
-	pixel_color = color_to_pixeldata(color);
+	pixel_color = color_to_pixeldata(&color);
 	i = 0;
 	while (i < nb_pixels)
 		pixels[i++] = pixel_color;

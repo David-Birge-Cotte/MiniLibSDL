@@ -12,10 +12,33 @@
 
 #include "../includes/graphics.h"
 
-static void	keydown(t_app *app, int keycode)
+/*
+** key press (one frame)
+*/
+
+static void	keypress(t_app *app, int keycode)
 {
 	if (keycode == SDLK_ESCAPE)
 		app->loop = FALSE;
+}
+
+/*
+** Key down (multiple frame possible)
+*/
+
+static void	keydown(const t_uint8 *state, t_scene *scene)
+{
+	scene->camera.transform = m_mult(scene->camera.transform, m_translate(v3d(
+		MOVE_SPEED * state[SDL_SCANCODE_D] - MOVE_SPEED * state[SDL_SCANCODE_A],
+		MOVE_SPEED * state[SDL_SCANCODE_E] - MOVE_SPEED * state[SDL_SCANCODE_Q],
+		MOVE_SPEED * state[SDL_SCANCODE_W] -
+			MOVE_SPEED * state[SDL_SCANCODE_S])));
+	scene->camera.transform = m_mult(scene->camera.transform, m_rotate(v3d(
+		TURN_SPEED * PI / 180 * state[SDL_SCANCODE_UP]
+			- TURN_SPEED * PI / 180 * state[SDL_SCANCODE_DOWN],
+		TURN_SPEED * PI / 180 * state[SDL_SCANCODE_LEFT]
+			- TURN_SPEED * PI / 180 * state[SDL_SCANCODE_RIGHT],
+	0)));
 }
 
 /*
@@ -24,11 +47,21 @@ static void	keydown(t_app *app, int keycode)
 
 void		handle_event(t_app *app)
 {
+	const t_uint8	*state;
+	int				nb_keys;
+
 	while (SDL_PollEvent(app->sdl->event))
 	{
 		if (app->sdl->event->type == SDL_QUIT)
 			app->loop = FALSE;
 		else if (app->sdl->event->type == SDL_KEYDOWN)
-			keydown(app, app->sdl->event->key.keysym.sym);
+			keypress(app, app->sdl->event->key.keysym.sym);
+	}
+	nb_keys = 0;
+	state = SDL_GetKeyboardState(&nb_keys);
+	if (nb_keys != 0)
+	{
+		keydown(state, &app->scene);
+		calculate_frame(app);
 	}
 }

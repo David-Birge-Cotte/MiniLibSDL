@@ -24,13 +24,11 @@ t_ray	new_ray(t_vector3d pos, t_vector3d dir)
 t_ray	ray_from_cam(t_camera cam, t_uint32 x, t_uint32 y)
 {
 	t_ray		ray;
-	float		px;
-	float		py;
 
 	ray.pos = m_to_pos(cam.transform);
 	ray.dir = v3d((double)(x - WIN_WIDTH / 2.0f) + ray.pos.x,
-				(double)(y - WIN_HEIGHT / 2.0f) + ray.pos.y,
-				(double)(-WIN_WIDTH / (2.0f * tanf(CAM_FOV / 2 * PI / 180)))
+				-(double)(y - WIN_HEIGHT / 2.0f) + ray.pos.y,
+				(double)(WIN_WIDTH / (2.0f * tanf(CAM_FOV / 2 * PI / 180)))
 						+ ray.pos.z);
 	ray.dir = m_vec_apply(ray.dir, cam.transform);
 	ray.dir = v3d_unit(ray.dir);

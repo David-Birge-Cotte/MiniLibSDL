@@ -19,20 +19,22 @@
 
 void	calculate_frame(t_app *app)
 {
-	t_color coloro;
+	t_multit_arg	arg;
 
-	coloro = to_color(BLACK);
-	fill_frame(app->pixels, app->nb_pixels, &coloro);
-	apply_fnc_to_each_pixel(app, &ray_trace);
+	fill_frame(app->pixels, app->nb_pixels, to_color(BLACK));
+	arg.app = app;
+	arg.fnc_ptr = &ray_trace;
+	threader(arg);
 }
 
 /*
 ** Applies a function on each pixel
 ** The function takes pixel coordonates t_uint32 x, y as arguments
+** Not used when multithreading
 */
 
 void	apply_fnc_to_each_pixel(t_app *app,
-			t_color (*fnc_ptr)(t_uint32, t_uint32, t_app *app))
+			t_color (*fnc_ptr)(t_uint32 x, t_uint32 y, t_app *app))
 {
 	t_uint32	x;
 	t_uint32	y;

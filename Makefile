@@ -22,6 +22,7 @@ SRCS =	main.c \
 		colors.c \
 		sdl_allocator.c \
 		app_allocator.c \
+		multithreading.c \
 		ft_math/v2i/vector2i.c \
 		ft_math/v2i/vector2i_1.c \
 		ft_math/v2f/vector2f.c \
@@ -36,14 +37,13 @@ SRCS =	main.c \
 		ft_math/maths_help.c \
 		ft_math/interpolations.c \
 		scenes/scene_01.c \
-		tmp.c \
 		primitive/primitives.c \
 		raytracing/raytracing.c \
 		raytracing/ray.c
 OBJS = $(addprefix $(OBJ_DIR), $(SRCS:.c=.o))
 NAME = sdl_simple
 CC = gcc
-CFLAGS = #-Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 SDL = `sdl2-config --cflags --libs`
 
 all: library $(NAME)

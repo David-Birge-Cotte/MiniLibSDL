@@ -16,9 +16,11 @@
 /*
 ** Required libraries
 */
+# include <OpenCL/cl.h>
 # include <SDL2/SDL.h>
 # include "../libft/libft.h"
 # include "ft_math/ft_math.h"
+
 
 /*
 ** optionnal libraries
@@ -28,11 +30,13 @@
 /*
 ** Window settings
 */
-# define WIN_WIDTH (1024)
-# define WIN_HEIGHT (1024)
-# define WIN_TITLE "Window Title"
-# define CAM_FOV (60)
+# define WIN_WIDTH (512)
+# define WIN_HEIGHT (512)
+# define WIN_TITLE "RT v1"
+# define CAM_FOV (50)
 # define AMBIANT (0.2f)
+# define MOVE_SPEED (0.2f)
+# define TURN_SPEED (2)
 
 /*
 ** Easy access simple colors RGBA8888
@@ -119,7 +123,8 @@ typedef struct		s_hit_data
 	t_vector3d		pos;
 	t_vector3d		normal;
 	t_mat			mat;
-	double			t;
+	double			t1;
+	double			t2;
 }					t_hit_data;
 
 typedef t_bool (*intersect)(const t_ray ray, const t_matrix transform, t_hit_data *hit);
@@ -181,6 +186,16 @@ typedef struct		s_app
 	t_scene			scene;
 }					t_app;
 
+typedef struct		s_multit_arg
+{
+	t_uint32		y_min;
+	t_uint32		y_max;
+	t_app			*app;
+	t_color 		(*fnc_ptr)(t_uint32, t_uint32, t_app *app);
+}					t_multit_arg;
+
+void			threader(t_multit_arg arg);
+
 /*
 ** Colors
 */
@@ -217,7 +232,7 @@ t_bool			sphere_intersect(const t_ray ray, const t_matrix transform, t_hit_data 
 void			calculate_frame(t_app *app);
 void			apply_fnc_to_each_pixel(t_app *app,
 					t_color (*fnc_ptr)(t_uint32, t_uint32, t_app *app));
-void			fill_frame(t_uint32 *pixels, size_t nb_pixels, t_color *color);
+void			fill_frame(t_uint32 *pixels, size_t nb_pixels, t_color color);
 int				display(t_sdl *sdl, t_uint32 *pixels);
 void			put_pixel(t_uint32 *pixels, t_uint32 x, t_uint32 y, const t_color *color);
 void			draw_line(t_uint32 *pixels, t_vector2i p1, t_vector2i p2, const t_color *color);

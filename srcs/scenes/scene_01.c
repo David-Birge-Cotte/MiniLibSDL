@@ -19,6 +19,7 @@ static t_3dobject	obj_new(t_objtype type, t_color diff_color,
 
 	obj.type = type;
 	obj.mat.diffuse = diff_color;
+	obj.mat.specular = 0.2f;
 	obj.transform = transform;
 	obj.inter = inter;
 	return (obj);
@@ -36,10 +37,12 @@ static t_scene		scene_01(void)
 	scene.objs = ft_memalloc(sizeof(t_3dobject) * scene.nb_obj);
 	scene.objs[0] = obj_new(SPHERE, to_color(BLUE), m_mult(m_translate(
 			v3d(0, 0, 0)), m_scale(v3d(1, 0, 0))), &sphere_intersect);
-	scene.objs[1] = obj_new(SPHERE, to_color(BLUE), m_mult(m_translate(
-			v3d(-50, 0, 0)), m_scale(v3d(45, 0, 0))), &sphere_intersect);
-	scene.objs[2] = obj_new(SPHERE, to_color(RED), m_mult(m_translate(
-			v3d(50, 0, 0)), m_scale(v3d(45, 0, 0))), &sphere_intersect);
+	scene.objs[1] = obj_new(PLANE, to_color(255, 255, 0, 255), m_mult(
+		m_translate(v3d(0, -5, 0)), m_scale(v3d(1, 1, 1))), &plane_intersect);
+	scene.objs[2] = obj_new(PLANE, to_color(BLUE), m_mult(m_translate(
+			v3d(0, 0, 10)), m_scale(v3d(1, 1, 1))), &plane_intersect);
+	scene.objs[2].transform = m_mult(scene.objs[2].transform,
+									m_rotate(v3d(90, 0, 0)));
 	scene.objs[3] = obj_new(SPHERE, to_color(GREEN), m_mult(m_translate(
 			v3d(0, 0, 50)), m_scale(v3d(45, 0, 0))), &sphere_intersect);
 	scene.objs[4] = obj_new(SPHERE, to_color(WHITE), m_mult(m_translate(
@@ -55,7 +58,7 @@ static t_scene		scene_01(void)
 	return (scene);
 }
 
-t_scene			new_scene(void)
+t_scene				new_scene(void)
 {
 	return (scene_01());
 }

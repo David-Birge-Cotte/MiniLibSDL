@@ -59,19 +59,6 @@ t_color			to_color(t_uint8 r, t_uint8 g, t_uint8 b, t_uint8 a)
 	return (color);
 }
 
-t_color			*add_to_color(t_color *original, const t_color *color_to_add)
-{
-	original->r = clampi(0, 255,
-						original->r + color_to_add->r);
-	original->g = clampi(0, 255,
-						original->g + color_to_add->g);
-	original->b = clampi(0, 255,
-						original->b + color_to_add->b);
-	original->a = clampi(0, 255,
-						original->a + color_to_add->a);
-	return (original);
-}
-
 /*
 ** Creates a new color, based on a linear interpolation between two colors
 ** with t == 0 : returns copy of start
@@ -96,13 +83,17 @@ t_color			*lerp_color(const t_color *start, const t_color *end, float t)
 	return (color);
 }
 
+/*
+** Multiplies a color by a constant (between 0 and 1)
+*/
+
 t_color			color_mult(const t_color color, const float m)
 {
 	t_color	col;
+	float	m_clamp;
 
-	col = to_color(clampi(0, 255, color.r * m),
-					clampi(0, 255, color.g * m),
-					clampi(0, 255, color.b * m),
-					clampi(0, 255, color.a * m));
+	m_clamp = clampf(0, 1, m);
+	col = to_color(color.r * m_clamp, color.g * m_clamp,
+					color.b * m_clamp, color.a * m_clamp);
 	return (col);
 }

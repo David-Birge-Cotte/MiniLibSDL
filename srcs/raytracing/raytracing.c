@@ -12,6 +12,10 @@
 
 #include "../../includes/graphics.h"
 
+/*
+** Test a ray in the scene
+*/
+
 static t_bool	ray_hit(const t_ray *ray, const t_scene *scene, t_hit_data *hit)
 {
 	t_hit_data	hit_tmp;
@@ -36,26 +40,31 @@ static t_bool	ray_hit(const t_ray *ray, const t_scene *scene, t_hit_data *hit)
 	return (FALSE);
 }
 
-static t_bool	is_obstructed(const t_vector3d origin, const t_vector3d dest, const t_scene *scene)
+/*
+** Test if intersection between origin and dest
+*/
+
+static t_bool	shadow_ray_hit(const t_vector3d origin, const t_vector3d dest,
+					const t_scene *scene)
 {
-	t_bool		is_hit;
 	t_hit_data	hit;
 	t_ray		ray;
 
 	hit.pos = v3d(INFINITY, INFINITY, INFINITY);
 	ray = new_ray(origin, v3d_unit(v3d_sub(dest, origin)));
-	ray.pos = v3d_add(ray.pos, v3d_scale(ray.dir, 0.2f)); // Small adjustement to not collide with surface
+	ray.pos = v3d_add(ray.pos, v3d_scale(ray.dir, 0.1f));
 	if (ray_hit(&ray, scene, &hit))
 	{
-		//if (v3d_mag(v3d_sub(ray.pos, hit.pos)) < v3d_mag(v3d_sub(ray.pos, dest)))
-		if (hit.t * hit.t < v3d_norm2(v3d_sub(dest, ray.pos)))
+		if (v3d_norm2(v3d_sub(ray.pos, hit.pos))
+			< v3d_norm2(v3d_sub(ray.pos, dest)))
 			return (TRUE);
 	}
 	return (FALSE);
 }
 
 /*
-** Returns the color of the pixel x, y on the screen using the ray-tracing algorithm
+** Returns the color of the pixel x, y on the screen
+** using the ray-tracing algorithm to compute visibility and shadows
 */
 
 t_color			ray_trace(t_uint32 x, t_uint32 y, t_app *app)
@@ -71,7 +80,7 @@ t_color			ray_trace(t_uint32 x, t_uint32 y, t_app *app)
 	primary_ray = ray_from_cam(app->scene.camera, x, y);
 	if (ray_hit(&primary_ray, &app->scene, &hit) == TRUE)
 	{
-		if (!is_obstructed(hit.pos, app->scene.lights[0].pos, &app->scene))
+		if (!shadow_ray_hit(hit.pos, app->scene.lights[0].pos, &app->scene))
 		{
 			shade = v3d_dot(v3d_unit(
 				v3d_sub(app->scene.lights[0].pos, hit.pos)), hit.normal);
