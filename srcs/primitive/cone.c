@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   v2d.h                                              :+:      :+:    :+:   */
+/*   cone.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbirge-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/26 08:57:57 by dbirge-c          #+#    #+#             */
-/*   Updated: 2018/04/26 08:57:59 by dbirge-c         ###   ########.fr       */
+/*   Created: 2018/05/04 14:39:28 by dbirge-c          #+#    #+#             */
+/*   Updated: 2018/05/04 14:39:28 by dbirge-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef V2D_H
-# define V2D_H
+#include "../../includes/graphics.h"
 
-# include <math.h>
-
-#endif
+t_bool	cone_intersect(const t_ray ray, const t_matrix transform,
+						t_hit_data *hit)
+{
+	return (FALSE);
+}

@@ -33,7 +33,7 @@ t_vector2i	v2i_sub(t_vector2i v1, t_vector2i v2)
 
 t_vector2i	v2i_unit(t_vector2i v)
 {
-	float 		mag;
+	float		mag;
 
 	mag = v2i_mag(v);
 	return (v2i(v.x / mag, v.y / mag));

@@ -33,7 +33,7 @@ t_vector2f	v2f_sub(t_vector2f v1, t_vector2f v2)
 
 t_vector2f	v2f_unit(t_vector2f v)
 {
-	float 		mag;
+	float		mag;
 
 	mag = v2f_mag(v);
 	return (v2f(v.x / mag, v.y / mag));

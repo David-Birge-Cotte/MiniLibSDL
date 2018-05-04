@@ -48,7 +48,7 @@ static t_matrix	m_create_rot_z(const float a)
 	return (m);
 }
 
-t_matrix	m_rotate(const t_vector3d v)
+t_matrix		m_rotate(const t_vector3d v)
 {
 	t_matrix	m;
 

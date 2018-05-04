@@ -37,7 +37,10 @@ SRCS =	main.c \
 		ft_math/maths_help.c \
 		ft_math/interpolations.c \
 		scenes/scene_01.c \
-		primitive/primitives.c \
+		primitive/sphere.c \
+		primitive/plane.c \
+		primitive/cone.c \
+		primitive/cylinder.c \
 		raytracing/raytracing.c \
 		raytracing/ray.c
 OBJS = $(addprefix $(OBJ_DIR), $(SRCS:.c=.o))

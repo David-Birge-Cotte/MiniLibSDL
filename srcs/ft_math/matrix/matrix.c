@@ -36,7 +36,7 @@ t_matrix	m_new(const float data[4][4])
 ** Returns a new matrix with its diagonal at 1
 */
 
-t_matrix	m_identity()
+t_matrix	m_identity(void)
 {
 	t_matrix	m;
 	size_t		i;
@@ -69,7 +69,6 @@ t_matrix	m_transpose(const t_matrix m)
 		while (++j < 4)
 			ma.m[i][j] = m.m[j][i];
 	}
-		
 	return (ma);
 }
 

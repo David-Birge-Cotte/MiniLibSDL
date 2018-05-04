@@ -22,13 +22,6 @@ typedef struct		s_vector3d
 	double			z;
 }					t_vector3d;
 
-typedef struct		s_coord_v3d
-{
-	t_vector3d	x;
-	t_vector3d	y;
-	t_vector3d	z;
-}					t_coord_v3d;
-
 t_vector3d			v3d(double x, double y, double z);
 t_vector3d			v3d_add(t_vector3d v1, t_vector3d v2);
 t_vector3d			v3d_sub(t_vector3d v1, t_vector3d v2);
@@ -40,7 +33,4 @@ float				v3d_angle(t_vector3d v1, t_vector3d v2);
 t_vector3d			v3d_cross(t_vector3d v1, t_vector3d v2);
 float				v3d_norm2(t_vector3d v);
 
-t_coord_v3d			coord_frame(t_vector3d v1, t_vector3d v2);
-
 #endif
- 

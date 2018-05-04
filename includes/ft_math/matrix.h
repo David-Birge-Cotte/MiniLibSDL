@@ -13,7 +13,7 @@
 #ifndef MATRIX_H
 # define MATRIX_H
 
-#include "ft_math.h"
+# include "ft_math.h"
 
 typedef struct	s_matrix
 {
