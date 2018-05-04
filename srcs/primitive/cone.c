@@ -15,5 +15,27 @@
 t_bool	cone_intersect(const t_ray ray, const t_matrix transform,
 						t_hit_data *hit)
 {
-	return (FALSE);
+	double		a;
+	double		b;
+	double		c;
+	double		delta;
+	t_vector3d	eyedir;
+
+	eyedir = v3d_sub(ray.pos, m_to_pos(transform));
+	a = ray.dir.x * ray.dir.x + ray.dir.y * ray.dir.y - ray.dir.z * ray.dir.z;
+	b = 2 * eyedir.x * ray.dir.x + 2 * eyedir.y * ray.dir.y
+		- 2 * eyedir.z * ray.dir.z;
+	c = pow(eyedir.x, 2) + pow(eyedir.y, 2) - pow(eyedir.z, 2);
+	delta = b * b - 4 * a * c;
+	if (delta < 0)
+		return (FALSE);
+	hit->t2 = (-b + sqrt(delta)) / (2 * a);
+	hit->t1 = (-b - sqrt(delta)) / (2 * a);
+	if (hit->t1 > hit->t2)
+		ft_swap(&hit->t1, &hit->t2);
+	if (hit->t1 < 0)
+		return (FALSE);
+	hit->pos = v3d_add(ray.pos, v3d_scale(ray.dir, hit->t1));
+	hit->normal = v3d_unit(v3d_sub(hit->pos, m_to_pos(transform)));
+	return (TRUE);
 }

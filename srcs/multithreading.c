@@ -63,4 +63,5 @@ void				threader(t_multit_arg arg)
 	i = 0;
 	while (i < 4)
 		SDL_WaitThread(threads[i++], NULL);
+	ft_memdel((void**)&threads);
 }

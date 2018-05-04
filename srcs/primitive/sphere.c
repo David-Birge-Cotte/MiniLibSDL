@@ -24,7 +24,7 @@ t_bool	sphere_intersect(const t_ray ray, const t_matrix transform,
 	a = v3d_norm2(ray.dir);
 	b = 2 * v3d_dot(ray.dir, v3d_sub(ray.pos, m_to_pos(transform)));
 	c = v3d_norm2(v3d_sub(ray.pos, m_to_pos(transform)))
-				- pow(m_to_scale(transform).x, 2);
+		- pow(m_to_scale(transform).x, 2);
 	delta = b * b - 4 * a * c;
 	if (delta < 0 || (hit->t2 = (-b + sqrt(delta)) / (2 * a) < 0))
 		return (FALSE);
