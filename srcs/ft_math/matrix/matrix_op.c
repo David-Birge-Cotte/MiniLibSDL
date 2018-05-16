@@ -56,16 +56,15 @@ t_matrix	m_mult(const t_matrix m1, const t_matrix m2)
 	t_matrix	m;
 	size_t		i;
 	size_t		j;
-
+	
 	i = -1;
-	while (++i < 4)
+	while (++i < 3)
 	{
 		j = -1;
-		while (++j < 4)
-			m.m[i][j] = m1.m[i][0] * m2.m[0][j] +
-						m1.m[i][1] * m2.m[1][j] +
-						m1.m[i][2] * m2.m[2][j] +
-						m1.m[i][3] * m2.m[3][j];
+		while (++j < 3)
+			m.m[j][i] = m1.m[0][i] * m2.m[j][0] +
+						m1.m[1][i] * m2.m[j][1] +
+						m1.m[2][i] * m2.m[j][2];
 	}
 	return (m);
 }

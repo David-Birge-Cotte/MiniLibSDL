@@ -12,17 +12,17 @@
 
 #include "../../includes/graphics.h"
 
-t_bool	plane_intersect(const t_ray ray, const t_matrix transform,
+t_bool	plane_intersect(const t_ray ray, const t_3dobject obj,
 						t_hit_data *hit)
 {
 	float		delta;
 
-	hit->normal = m_vec_apply(v3d(0, 1, 0), transform);
+	hit->normal = m_vec_apply(v3d(0, 1, 0), m_rotate(obj.rot));
+	//hit->normal = v3d_unit(obj.rot);
 	delta = v3d_dot(ray.dir, hit->normal);
 	if (fabsf(delta) < 0.0001f)
 		return (FALSE);
-	hit->t1 = v3d_dot(v3d_sub(m_to_pos(transform), ray.pos),
-										hit->normal) / delta;
+	hit->t1 = v3d_dot(v3d_sub(obj.pos, ray.pos), hit->normal) / delta;
 	hit->pos = v3d_add(ray.pos, v3d_scale(ray.dir, hit->t1));
 	if (hit->t1 < 0)
 		return (FALSE);

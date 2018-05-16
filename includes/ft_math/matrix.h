@@ -32,6 +32,10 @@ t_vector3d		m_pt_apply(const t_vector3d v, const t_matrix m);
 t_vector3d		m_vec_apply(const t_vector3d v, const t_matrix m);
 t_vector3d		m_to_pos(const t_matrix m);
 t_vector3d		m_to_scale(const t_matrix m);
+t_vector3d		m_to_rot(const t_matrix m);
+t_matrix		m_create_rot_x(const float a);
+t_matrix		m_create_rot_y(const float a);
+t_matrix		m_create_rot_z(const float a);
 void			m_print(const t_matrix m);
 
 #endif

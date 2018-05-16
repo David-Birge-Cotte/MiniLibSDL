@@ -83,9 +83,9 @@ void		m_print(const t_matrix m)
 		i = -1;
 		while (++i < 4)
 		{
-			ft_putnbr((int)m.m[i][j]);
-			ft_putchar(' ');
+			printf("%f", m.m[i][j]);
+			printf(" ");
 		}
-		ft_putchar('\n');
+		printf("\n");
 	}
 }

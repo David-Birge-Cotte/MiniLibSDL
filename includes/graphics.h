@@ -43,15 +43,6 @@
 # define TRANSP	0	, 0		, 0		, 0
 
 /*
-** Boolean type 0 = FALSE, 1 = TRUE
-*/
-typedef enum		e_bool
-{
-	FALSE,
-	TRUE
-}					t_bool;
-
-/*
 ** Primitive types (mathematically computed)
 */
 
@@ -122,8 +113,8 @@ typedef struct		s_hit_data
 ** Intersection function pointer
 */
 
-typedef t_bool	(*t_intersect)(const t_ray ray, const t_matrix transform,
-							t_hit_data *hit);
+//typedef t_bool	(*t_intersect)(const t_ray ray, const t_3dobject obj,
+//							t_hit_data *hit);
 
 /*
 ** Main object struct
@@ -135,10 +126,13 @@ typedef t_bool	(*t_intersect)(const t_ray ray, const t_matrix transform,
 
 typedef struct		s_3dobject
 {
-	t_matrix		transform;
+	t_vector3d		pos;
+	t_vector3d		rot;
 	t_objtype		type;
 	t_mat			mat;
-	t_intersect		inter;
+	t_bool			(*inter)(const t_ray ray, const struct s_3dobject obj,
+							t_hit_data *hit);
+	//t_intersect		inter;
 }					t_3dobject;
 
 /*
@@ -147,7 +141,8 @@ typedef struct		s_3dobject
 
 typedef struct		s_camera
 {
-	t_matrix		transform;
+	t_vector3d		pos;
+	t_vector3d		rot;
 }					t_camera;
 
 /*
@@ -238,13 +233,13 @@ t_ray				new_ray(t_vector3d pos, t_vector3d dir);
 */
 
 t_bool				plane_intersect(const t_ray ray,
-						const t_matrix transform, t_hit_data *hit);
+						const t_3dobject obj, t_hit_data *hit);
 t_bool				sphere_intersect(const t_ray ray,
-						const t_matrix transform, t_hit_data *hit);
+						const t_3dobject obj, t_hit_data *hit);
 t_bool				cone_intersect(const t_ray ray,
-						const t_matrix transform, t_hit_data *hit);
+						const t_3dobject obj, t_hit_data *hit);
 t_bool				cylinder_intersect(const t_ray ray,
-						const t_matrix transform, t_hit_data *hit);
+						const t_3dobject obj, t_hit_data *hit);
 
 /*
 ** Draw

@@ -71,3 +71,24 @@ t_vector3d	m_to_scale(const t_matrix m)
 	v.z = m.m[2][2];
 	return (v);
 }
+
+t_vector3d	m_to_rot(const t_matrix m)
+{
+	t_vector3d	v;
+	double		sy;
+
+	sy = sqrt(m.m[0][0] * m.m[0][0] + m.m[0][1] * m.m[0][1]);
+	if (!(sy < 1e-6))
+	{
+		v.x = atan2(m.m[1][2], m.m[2][2]);
+		v.y = atan2(-m.m[0][2], sy);
+		v.z = atan2(m.m[0][1], m.m[0][0]);
+	}
+	else
+	{
+		v.x = atan2(-m.m[2][1], m.m[1][1]);
+		v.y = atan2(-m.m[0][2], sy);
+		v.z = 0;
+	}
+	return (v);
+}

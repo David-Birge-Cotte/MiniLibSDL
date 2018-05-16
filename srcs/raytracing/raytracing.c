@@ -24,7 +24,7 @@ static t_bool	ray_hit(const t_ray *ray, const t_scene *scene, t_hit_data *hit)
 	i = 0;
 	while (i < scene->nb_obj)
 	{
-		if (scene->objs[i].inter(*ray, scene->objs[i].transform, &hit_tmp))
+		if (scene->objs[i].inter(*ray, scene->objs[i], &hit_tmp))
 		{
 			if (v3d_mag(v3d_sub(ray->pos, hit_tmp.pos))
 				< v3d_mag(v3d_sub(ray->pos, hit->pos)))

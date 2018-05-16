@@ -25,6 +25,15 @@ typedef unsigned int	t_uint32;
 typedef unsigned short	t_uint16;
 typedef unsigned char	t_uint8;
 
+/*
+** Boolean type 0 = FALSE, 1 = TRUE
+*/
+typedef enum		e_bool
+{
+	FALSE,
+	TRUE
+}					t_bool;
+
 typedef struct		s_list
 {
 	void			*content;
