@@ -52,7 +52,7 @@ static t_bool	shadow_ray_hit(const t_vector3d origin, const t_vector3d dest,
 
 	hit.pos = v3d(INFINITY, INFINITY, INFINITY);
 	ray = new_ray(origin, v3d_unit(v3d_sub(dest, origin)));
-	ray.pos = v3d_add(ray.pos, v3d_scale(ray.dir, 0.05f));
+	ray.pos = v3d_add(ray.pos, v3d_scale(ray.dir, 0.001f));
 	if (ray_hit(&ray, scene, &hit))
 	{
 		if (v3d_norm2(v3d_sub(ray.pos, hit.pos))

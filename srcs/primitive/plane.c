@@ -17,7 +17,7 @@ t_bool	plane_intersect(const t_ray ray, const t_3dobject obj,
 {
 	float		delta;
 
-	hit->normal = m_vec_apply(v3d(0, 1, 0), m_rotate(obj.rot));
+	hit->normal = obj.rot;
 	delta = v3d_dot(ray.dir, hit->normal);
 	if (fabsf(delta) < 0.0001f)
 		return (FALSE);

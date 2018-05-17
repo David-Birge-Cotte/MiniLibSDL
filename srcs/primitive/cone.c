@@ -12,6 +12,17 @@
 
 #include "../../includes/graphics.h"
 
+t_vector3d	cone_norm(t_3dobject obj, t_vector3d p)
+{
+	t_vector3d	n;
+	t_vector3d	v;
+
+	n.x = (p.x - obj.pos.x) * 1 / 0.5f;
+	n.y = 0.5f / 1;
+	n.z = (p.z - obj.pos.z) * 1 / 0.5f;
+	return (v3d_unit(n));
+}
+
 t_bool	cone_intersect(const t_ray ray, const t_3dobject obj,
 						t_hit_data *hit)
 {
@@ -23,10 +34,12 @@ t_bool	cone_intersect(const t_ray ray, const t_3dobject obj,
 
 	
 	eyedir = v3d_sub(ray.pos, obj.pos);
-	a = ray.dir.x * ray.dir.x + ray.dir.y * ray.dir.y - ray.dir.z * ray.dir.z;
-	b = 2 * eyedir.x * ray.dir.x + 2 * eyedir.y * ray.dir.y
-		- 2 * eyedir.z * ray.dir.z;
-	c = pow(eyedir.x, 2) + pow(eyedir.y, 2) - pow(eyedir.z, 2);
+	a = v3d_dot(ray.dir, ray.dir) - (1 + pow(tan(0.5f), 2)) *
+		pow(v3d_dot(ray.dir, obj.rot), 2);
+	b = 2 * (v3d_dot(ray.dir, eyedir) - (1 + pow(tan(0.5f), 2))
+		* v3d_dot(ray.dir, obj.rot) * v3d_dot(eyedir, obj.rot));
+	c = v3d_dot(eyedir, eyedir) - (1 +
+		pow(tan(0.5f), 2)) * pow(v3d_dot(eyedir, obj.rot), 2);
 	delta = b * b - 4 * a * c;
 	if (delta < 0)
 		return (FALSE);
@@ -37,6 +50,6 @@ t_bool	cone_intersect(const t_ray ray, const t_3dobject obj,
 	if (hit->t1 < 0)
 		return (FALSE);
 	hit->pos = v3d_add(ray.pos, v3d_scale(ray.dir, hit->t1));
-	hit->normal = v3d_unit(v3d_sub(hit->pos, obj.pos));
-	return (FALSE);
+	hit->normal = cone_norm(obj, hit->pos);
+	return (TRUE);
 }

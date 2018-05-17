@@ -22,7 +22,7 @@ t_3dobject	obj_new(t_color diff_color,
 	obj.mat.diffuse = diff_color;
 	obj.mat.specular = 0.2f;
 	obj.pos = pos;
-	obj.rot = v3d(rot.x * PI / 180, rot.y * PI / 180, rot.z * PI / 180);
+	obj.rot = v3d_unit(rot);
 	obj.inter = inter;
 	return (obj);
 }
