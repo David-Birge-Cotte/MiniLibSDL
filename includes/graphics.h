@@ -98,13 +98,6 @@ typedef struct		s_hit_data
 }					t_hit_data;
 
 /*
-** Intersection function pointer
-*/
-
-//typedef t_bool	(*t_intersect)(const t_ray ray, const t_3dobject obj,
-//							t_hit_data *hit);
-
-/*
 ** Main object struct
 ** transform	-> 4x4 transformation matrix
 ** type			-> primitive type
@@ -267,7 +260,8 @@ int					load_scene(char *file, t_app *app);
 t_scene				new_scene();
 t_3dobject			obj_new(t_color diff_color,
 							t_vector3d pos, t_vector3d rot,
-							t_bool (*inter)(const t_ray ray, const t_3dobject obj, t_hit_data *hit));
+							t_bool (*inter)(const t_ray ray,
+							const t_3dobject obj, t_hit_data *hit));
 t_vector3d			extract_vector(char *vector);
 t_vector3d			*extract_vectors(char *line);
 int					add_obj_to_scene(t_scene *scene, char *line, size_t i_obj);
