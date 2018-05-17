@@ -40,6 +40,5 @@ void		app_del(t_app *app)
 	sdl_del(app->sdl);
 	ft_memdel((void**)&app->pixels);
 	ft_memdel((void**)&app->scene.objs);
-	ft_memdel((void**)&app->scene.lights);
 	ft_memdel((void**)&app);
 }

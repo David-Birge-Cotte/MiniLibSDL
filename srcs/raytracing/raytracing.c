@@ -80,14 +80,14 @@ t_color			ray_trace(t_uint32 x, t_uint32 y, t_app *app)
 	primary_ray = ray_from_cam(app->scene.camera, x, y);
 	if (ray_hit(&primary_ray, &app->scene, &hit) == TRUE)
 	{
-		if (!shadow_ray_hit(hit.pos, app->scene.lights[0].pos, &app->scene))
+		if (!shadow_ray_hit(hit.pos, app->scene.light.pos, &app->scene))
 		{
 			shade = v3d_dot(v3d_unit(
-				v3d_sub(app->scene.lights[0].pos, hit.pos)), hit.normal);
+				v3d_sub(app->scene.light.pos, hit.pos)), hit.normal);
 			if (shade < 0)
 				shade = 0;
-			pix_i = AMBIANT + (25 * app->scene.lights[0].intensity * shade
-					/ v3d_mag(v3d_sub(app->scene.lights[0].pos, hit.pos)));
+			pix_i = AMBIANT + (25 * app->scene.light.intensity * shade
+					/ v3d_mag(v3d_sub(app->scene.light.pos, hit.pos)));
 			col = color_mult(hit.mat.diffuse, pix_i);
 		}
 		else

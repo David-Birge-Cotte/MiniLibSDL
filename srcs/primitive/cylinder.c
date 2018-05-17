@@ -30,7 +30,6 @@ t_bool	cylinder_intersect(t_ray ray, const t_3dobject obj,
 		2 * ray.dir.z * (ray.pos.z - obj.pos.z);
 	c = (ray.pos.x - obj.pos.x) * (ray.pos.x - obj.pos.x) +
 		(ray.pos.z - obj.pos.z) * (ray.pos.z - obj.pos.z) - 1;
-
 	
 	/*a = v3d_dot(ray.dir, ray.dir) + pow(v3d_dot(ray.dir, obj.rot), 2);
 	b = 2 * (v3d_dot(ray.dir, eyedir) -

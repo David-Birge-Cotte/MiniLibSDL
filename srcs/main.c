@@ -26,24 +26,28 @@ static void			loop(t_app *app)
 ** Function called once before the loop starts
 */
 
-static void			start(t_app *app)
+static int			start(t_app *app, char *file)
 {
-	app->scene = new_scene();
+	if (load_scene(file, app) < 0)
+		return (-1);
 	calculate_frame(app);
-	display(app->sdl, app->pixels);
+	if (display(app->sdl, app->pixels) == -1)
+		return (-1);
+	return (1);
 }
 
 /*
 ** The entry point of the program
 */
 
-int					main(void)
+int					main(int argc, char **argv)
 {
 	t_app		*app;
 
 	if ((app = new_app()) == NULL)
 		return (-1);
-	start(app);
+	if (start(app, argv[1]) < 0)
+		return (-1);
 	while (app->loop)
 		loop(app);
 	app_del(app);

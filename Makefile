@@ -36,13 +36,14 @@ SRCS =	main.c \
 		ft_math/clamp.c \
 		ft_math/maths_help.c \
 		ft_math/interpolations.c \
-		scenes/scene_01.c \
 		primitive/sphere.c \
 		primitive/plane.c \
 		primitive/cone.c \
 		primitive/cylinder.c \
 		raytracing/raytracing.c \
-		raytracing/ray.c
+		raytracing/ray.c \
+		parsing/parsing.c \
+		obj_allocator.c
 OBJS = $(addprefix $(OBJ_DIR), $(SRCS:.c=.o))
 NAME = sdl_simple
 CC = gcc

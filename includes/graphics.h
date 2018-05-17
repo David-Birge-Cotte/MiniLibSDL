@@ -43,18 +43,6 @@
 # define TRANSP	0	, 0		, 0		, 0
 
 /*
-** Primitive types (mathematically computed)
-*/
-
-typedef enum		e_objtype
-{
-	SPHERE,
-	PLANE,
-	CONE,
-	CYLINDER
-}					t_objtype;
-
-/*
 ** 32 bit color structure RGBA8888
 */
 
@@ -128,11 +116,9 @@ typedef struct		s_3dobject
 {
 	t_vector3d		pos;
 	t_vector3d		rot;
-	t_objtype		type;
 	t_mat			mat;
 	t_bool			(*inter)(const t_ray ray, const struct s_3dobject obj,
 							t_hit_data *hit);
-	//t_intersect		inter;
 }					t_3dobject;
 
 /*
@@ -152,10 +138,9 @@ typedef struct		s_camera
 typedef struct		s_scene
 {
 	t_camera		camera;
+	t_light			light;
 	t_3dobject		*objs;
 	size_t			nb_obj;
-	t_light			*lights;
-	size_t			nb_lights;
 }					t_scene;
 
 /*
@@ -278,6 +263,15 @@ t_color				*draw_frac(t_uint32 x, t_uint32 y);
 ** Scenes
 */
 
+int					load_scene(char *file, t_app *app);
 t_scene				new_scene();
+t_3dobject			obj_new(t_color diff_color,
+							t_vector3d pos, t_vector3d rot,
+							t_bool (*inter)(const t_ray ray, const t_3dobject obj, t_hit_data *hit));
+t_vector3d			extract_vector(char *vector);
+t_vector3d			*extract_vectors(char *line);
+int					add_obj_to_scene(t_scene *scene, char *line, size_t i_obj);
+int					add_cam_to_scene(t_scene *scene, char *line);
+int					add_light_to_scene(t_scene *scene, char *line);
 
 #endif

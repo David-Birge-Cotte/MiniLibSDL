@@ -31,7 +31,8 @@ static void	keydown(const t_uint8 *state, t_scene *scene)
 	scene->camera.pos = v3d_add(scene->camera.pos, v3d(
 		MOVE_SPEED * state[SDL_SCANCODE_D] - MOVE_SPEED * state[SDL_SCANCODE_A],
 		MOVE_SPEED * state[SDL_SCANCODE_E] - MOVE_SPEED * state[SDL_SCANCODE_Q],
-		MOVE_SPEED * state[SDL_SCANCODE_W] - MOVE_SPEED * state[SDL_SCANCODE_S]));
+		MOVE_SPEED * state[SDL_SCANCODE_W]
+		- MOVE_SPEED * state[SDL_SCANCODE_S]));
 	scene->camera.rot = v3d_add(scene->camera.rot, v3d(
 		TURN_SPEED * PI / 180 * state[SDL_SCANCODE_UP]
 			- TURN_SPEED * PI / 180 * state[SDL_SCANCODE_DOWN],
