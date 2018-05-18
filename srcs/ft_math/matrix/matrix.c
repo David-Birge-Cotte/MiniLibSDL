@@ -71,21 +71,3 @@ t_matrix	m_transpose(const t_matrix m)
 	}
 	return (ma);
 }
-
-void		m_print(const t_matrix m)
-{
-	size_t		i;
-	size_t		j;
-
-	j = -1;
-	while (++j < 4)
-	{
-		i = -1;
-		while (++i < 4)
-		{
-			printf("%f", m.m[i][j]);
-			printf(" ");
-		}
-		printf("\n");
-	}
-}

@@ -51,7 +51,7 @@ int			add_cam_to_scene(t_scene *scene, char *line)
 	return (1);
 }
 
-static void	add_cyl_cone(t_scene *scene, char *line, size_t i_obj,
+static int	add_cyl_cone(t_scene *scene, char *line, size_t i_obj,
 						t_vector3d *v3ds)
 {
 	if (ft_strncmp(line, "CYLINDER:", 9) == 0)
@@ -66,6 +66,9 @@ static void	add_cyl_cone(t_scene *scene, char *line, size_t i_obj,
 			to_color(v3ds[2].x, v3ds[2].y, v3ds[2].z, 255),
 			v3ds[0], v3ds[1], &cone_intersect);
 	}
+	else
+		return (-1);
+	return (1);
 }
 
 int			add_obj_to_scene(t_scene *scene, char *line, size_t i_obj)
@@ -86,8 +89,8 @@ int			add_obj_to_scene(t_scene *scene, char *line, size_t i_obj)
 			to_color(v3ds[2].x, v3ds[2].y, v3ds[2].z, 255),
 			v3ds[0], v3ds[1], &plane_intersect);
 	}
-	else
-		add_cyl_cone(scene, line, i_obj, v3ds);
+	else if (add_cyl_cone(scene, line, i_obj, v3ds) < 0)
+		return (-1);
 	ft_memdel((void**)&v3ds);
 	return (1);
 }

@@ -15,7 +15,6 @@
 t_vector3d	cone_norm(t_3dobject obj, t_vector3d p)
 {
 	t_vector3d	n;
-	t_vector3d	v;
 
 	n.x = (p.x - obj.pos.x) * 1 / 0.5f;
 	n.y = 0.5f / 1;
@@ -23,7 +22,7 @@ t_vector3d	cone_norm(t_3dobject obj, t_vector3d p)
 	return (v3d_unit(n));
 }
 
-t_bool	cone_intersect(const t_ray ray, const t_3dobject obj,
+t_bool		cone_intersect(const t_ray ray, const t_3dobject obj,
 						t_hit_data *hit)
 {
 	double		a;
@@ -32,7 +31,6 @@ t_bool	cone_intersect(const t_ray ray, const t_3dobject obj,
 	double		delta;
 	t_vector3d	eyedir;
 
-	
 	eyedir = v3d_sub(ray.pos, obj.pos);
 	a = v3d_dot(ray.dir, ray.dir) - (1 + pow(tan(0.5f), 2)) *
 		pow(v3d_dot(ray.dir, obj.rot), 2);

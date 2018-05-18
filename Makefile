@@ -47,7 +47,7 @@ SRCS =	main.c \
 OBJS = $(addprefix $(OBJ_DIR), $(SRCS:.c=.o))
 NAME = sdl_simple
 CC = gcc
-CFLAGS = #-Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 SDL = `sdl2-config --cflags --libs`
 
 all: library $(NAME)

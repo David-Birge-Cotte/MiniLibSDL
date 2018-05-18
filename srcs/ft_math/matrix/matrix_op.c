@@ -56,7 +56,7 @@ t_matrix	m_mult(const t_matrix m1, const t_matrix m2)
 	t_matrix	m;
 	size_t		i;
 	size_t		j;
-	
+
 	i = -1;
 	while (++i < 3)
 	{

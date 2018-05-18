@@ -12,7 +12,6 @@
 
 #include "../../includes/graphics.h"
 
-
 t_bool	cylinder_intersect(t_ray ray, const t_3dobject obj,
 						t_hit_data *hit)
 {
@@ -26,8 +25,7 @@ t_bool	cylinder_intersect(t_ray ray, const t_3dobject obj,
 	a = v3d_dot(ray.dir, ray.dir) - pow(v3d_dot(ray.dir, obj.rot), 2);
 	b = 2 * (v3d_dot(ray.dir, eyedir) -
 		(v3d_dot(ray.dir, obj.rot) * v3d_dot(eyedir, obj.rot)));
-	c = v3d_dot(eyedir, eyedir) -
-		pow(v3d_dot(eyedir, obj.rot), 2) - 1;
+	c = v3d_dot(eyedir, eyedir) - pow(v3d_dot(eyedir, obj.rot), 2) - 1;
 	delta = b * b - 4 * a * c;
 	if (delta < 0)
 		return (FALSE);

@@ -44,6 +44,8 @@ int					main(int argc, char **argv)
 {
 	t_app		*app;
 
+	if (argc != 2)
+		return (-1);
 	if ((app = new_app()) == NULL)
 		return (-1);
 	if (start(app, argv[1]) < 0)

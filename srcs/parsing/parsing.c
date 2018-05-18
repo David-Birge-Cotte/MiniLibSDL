@@ -60,7 +60,6 @@ t_vector3d	*extract_vectors(char *line)
 static int	create_scene(t_scene *scene, int fd)
 {
 	char		*line;
-	t_vector3d	*v3ds;
 	size_t		i_obj;
 
 	if ((scene->objs =
@@ -91,11 +90,21 @@ static int	get_num_line(char *file)
 	char	*line;
 	size_t	nb_lines;
 	int		fd;
+	size_t	i;
 
+	nb_lines = 0;
 	if ((fd = open(file, O_RDONLY)) == -1)
 		return (-1);
 	while (get_next_line(fd, &line) > 0)
 	{
+		i = 0;
+		while (line[i++])
+		{
+			if (line[i - 1] != ',' && line[i - 1] != '-' && line[i - 1] != ';'
+			&& (line[i - 1] > '9' || line[i - 1] < '0') && line[i - 1] != ' '
+			&& (line[i - 1] > 'Z' || line[i - 1] < 'A') && line[i - 1] != ':')
+				return (-1);
+		}
 		ft_strdel(&line);
 		nb_lines++;
 	}
@@ -113,6 +122,10 @@ int			load_scene(char *file, t_app *app)
 	if ((fd = open(file, O_RDONLY)) == -1)
 		return (-1);
 	scene.nb_obj = get_num_line(file) - 2;
+	scene.light.intensity = 1;
+	scene.light.pos = v3d(0, 20, 0);
+	scene.camera.pos = v3d(0, 1, -10);
+	scene.camera.rot = v3d(0, 0, 0);
 	if (create_scene(&scene, fd) < 0)
 		return (-1);
 	if (close(fd))
