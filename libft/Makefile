@@ -6,7 +6,7 @@
 #    By: dbirge-c <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 12:44:54 by dbirge-c          #+#    #+#              #
-#    Updated: 2017/12/12 11:32:36 by dbirge-c         ###   ########.fr        #
+#    Updated: 2018/05/18 16:34:26 by dbirge-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ $(NAME): $(OBJ_FILES)
 	@ranlib $(NAME)
 
 %.o: %.c
-	 @gcc -c -o $@ $<
+	@gcc $(FLAGS) -c -o $@ $<
 
 clean:
 	@rm -f $(OBJ_FILES)
@@ -47,6 +47,7 @@ clean:
 fclean: clean
 	@rm -f $(NAME)
 
-re: fclean all
+re: fclean
+	make
 
 .PHONY: all clean fclean re

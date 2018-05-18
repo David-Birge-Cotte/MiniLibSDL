@@ -6,7 +6,7 @@
 /*   By: dbirge-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 16:24:25 by dbirge-c          #+#    #+#             */
-/*   Updated: 2017/11/09 16:24:26 by dbirge-c         ###   ########.fr       */
+/*   Updated: 2018/05/18 16:32:55 by dbirge-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ static char	*update_str(char *str, char c)
 char		*ft_itoa(int n)
 {
 	char	*str;
-	char	*tmp;
-	char	*str_tmp;
 	long	l;
 
 	if (!(str = ft_strnew(0)))

@@ -6,7 +6,7 @@
 #    By: dbirge-c <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/14 11:07:13 by dbirge-c          #+#    #+#              #
-#    Updated: 2018/04/10 16:45:20 by dbirge-c         ###   ########.fr        #
+#    Updated: 2018/05/18 16:34:55 by dbirge-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,21 +45,21 @@ SRCS =	main.c \
 		parsing/parsing.c \
 		obj_allocator.c
 OBJS = $(addprefix $(OBJ_DIR), $(SRCS:.c=.o))
-NAME = sdl_simple
+NAME = rtv1
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 SDL = `sdl2-config --cflags --libs`
 
-all: library $(NAME)
+all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): library $(OBJS)
 	@$(CC) $(CFLAGS) $(SDL) $(OBJS) -L ./libft -l ft -o $@
 	@echo "$(NAME) compiled"
 
-library:
+library: libft/
 	@$(MAKE) -C libft
 
-$(OBJ_DIR)%.o : $(SRC_DIR)%.c
+$(OBJ_DIR)%.o : $(SRC_DIR)%.c includes/
 	@$(CC) $(CFLAGS) $(INCL) -c $< -o $@
 
 clean:
@@ -71,6 +71,7 @@ fclean: clean
 	@rm -f $(NAME)
 	@rm -f ./libft/libft.a
 
-re: fclean all
+re: fclean
+	@make
 
 .PHONY: all clean fclean re
